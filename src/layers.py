@@ -50,10 +50,14 @@ def linear_backward(dout, X, W, b):
     - dW: A numpy array of shape (D, M), gradient with respect to W
     - db: A nump array of shape (M,), gradient with respect to b
     """
-    print("dout", dout)
+    print("dout", dout.shape)
     print("X", X.shape)
     print("b", b.shape)
     print("W", W.shape)
+    X_reshaped = np.reshape(X, newshape=(X.shape[0], -1))
+    print("X_shaped ", X_reshaped.shape)
+    delta = X - Y
+
     dX, dW, db = None, None, None
     """
     TODO: Implement the linear backward pass. Store your results of the
