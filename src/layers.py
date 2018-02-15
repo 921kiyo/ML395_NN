@@ -15,10 +15,8 @@ def linear_forward(X, W, b):
 
 
     """
-    # print(X.shape)
-    # print(b.shape)
-    # print(W.shape)
-    X_reshaped = np.reshape(X, newshape=(10,-1))
+
+    X_reshaped = np.reshape(X, newshape=(X.shape[0],-1))
     a = np.matmul(X_reshaped,W)
     out = np.add(a,b)
 
@@ -52,6 +50,10 @@ def linear_backward(dout, X, W, b):
     - dW: A numpy array of shape (D, M), gradient with respect to W
     - db: A nump array of shape (M,), gradient with respect to b
     """
+    print("dout", dout)
+    print("X", X.shape)
+    print("b", b.shape)
+    print("W", W.shape)
     dX, dW, db = None, None, None
     """
     TODO: Implement the linear backward pass. Store your results of the
@@ -84,8 +86,10 @@ def relu_forward(X):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
+    # print("X: ", X.shape)
     out = X.copy()  # Must use copy in numpy to avoid pass by reference.
     out[out < 0] = 0
+    # np.clip(X, 0, None, out=out)
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
