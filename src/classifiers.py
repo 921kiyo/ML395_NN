@@ -25,21 +25,20 @@ def softmax(logits, y):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-    loss = np.exp(logits-np.max(logits)) / np.sum(np.exp(logits-np.max(logits)), axis=0)
-    SM = logits.reshape((5,1,-1))
-    print(SM.shape)
-    print("****************")
-    
-    print(np.transpose(SM,(0,2,1)).shape)
-    tenbyten = [np.dot(x,y) for y,x in zip(SM,np.transpose(SM,(0,2,1)))]
-    diags = [np.diag(y) for y in logits]
-    print(diags[0].shape)
-    #tenbyten = np.dot(SM,np.transpose(SM,(0,2,1)))
-    next_array = [x - y for x,y in zip(diags,tenbyten)]
-    print(next_array[0].shape)
-    print(logits.shape)
-    dlogits = np.array([np.dot(y,x) for x,y in zip(next_array,logits)])
-    print(dlogits.shape)
+    # Convert scores to probabilities
+    # Softmax Layer
+    #-np.max(logits)
+    softmax_ = lambda s: s / np.sum(s, axis=1, keepdims=True)
+    exp_sc = np.exp(logits - np.max(logits))
+    probs = softmax_(exp_sc)
+    N = y.shape[0]
+    # Cross-Entropy Error
+    corect_logprobs = -np.log(probs[range(N), y])
+    loss = np.sum(corect_logprobs) / N
+    # Backward pass: compute gradients
+    dscores = probs
+    dscores[range(N), y] -= 1
+    dlogits = dscores / N
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
