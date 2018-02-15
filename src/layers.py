@@ -15,7 +15,13 @@ def linear_forward(X, W, b):
 
 
     """
-    out = None
+    # print(X.shape)
+    # print(b.shape)
+    # print(W.shape)
+    X_reshaped = np.reshape(X, newshape=(10,-1))
+    a = np.matmul(X_reshaped,W)
+    out = np.add(a,b)
+
     """
     TODO: Implement the linear forward pass. Store your result in `out`.
     Tip: Think how X needs to be reshaped.
