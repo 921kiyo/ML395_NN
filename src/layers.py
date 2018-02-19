@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def linear_forward(X, W, b):
     """
     Computes the forward pass for a linear (fully-connected) layer.
@@ -15,7 +14,6 @@ def linear_forward(X, W, b):
 
 
     """
-    out = None
     """
     TODO: Implement the linear forward pass. Store your result in `out`.
     Tip: Think how X needs to be reshaped.
@@ -24,6 +22,9 @@ def linear_forward(X, W, b):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    X_reshaped = np.reshape(X, newshape=(X.shape[0],-1))
+    a = np.matmul(X_reshaped,W)
+    out = np.add(a,b)
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -46,6 +47,7 @@ def linear_backward(dout, X, W, b):
     - dW: A numpy array of shape (D, M), gradient with respect to W
     - db: A nump array of shape (M,), gradient with respect to b
     """
+
     dX, dW, db = None, None, None
     """
     TODO: Implement the linear backward pass. Store your results of the
@@ -55,11 +57,13 @@ def linear_backward(dout, X, W, b):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    db = np.sum(dout, axis=0)
+    dX = dout.dot(W.T).reshape(X.shape)
+    dW = X.reshape(X.shape[0], W.shape[0]).T.dot(dout)
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
-
     return dX, dW, db
 
 
@@ -78,8 +82,10 @@ def relu_forward(X):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-    out = X.copy()  # Must use copy in numpy to avoid pass by reference.
+
+    out = X.copy()
     out[out < 0] = 0
+
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
@@ -103,6 +109,8 @@ def relu_backward(dout, X):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    dX = np.array(dout, copy=True)
+    dX[ X <= 0] = 0
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -137,6 +145,12 @@ def dropout_forward(X, p=0.5, train=True, seed=42):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    out = X
+    if train:
+        q = 1-p
+        mask = np.random.binomial(n = 1, p=q, size = X.shape)
+        out = X*mask
+        out = out/q
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -168,6 +182,9 @@ def dropout_backward(dout, mask, p=0.5, train=True):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    dX = np.array(dout, copy=True)
+    if train:
+        dX = dX/(1-p)
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
