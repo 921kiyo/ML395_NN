@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def linear_forward(X, W, b):
     """
     Computes the forward pass for a linear (fully-connected) layer.
@@ -28,6 +27,9 @@ def linear_forward(X, W, b):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    X_reshaped = np.reshape(X, newshape=(X.shape[0],-1))
+    a = np.matmul(X_reshaped,W)
+    out = np.add(a,b)
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -50,13 +52,6 @@ def linear_backward(dout, X, W, b):
     - dW: A numpy array of shape (D, M), gradient with respect to W
     - db: A nump array of shape (M,), gradient with respect to b
     """
-    print("dout", dout.shape)
-    print("X", X.shape)
-    print("b", b.shape)
-    print("W", W.shape)
-    X_reshaped = np.reshape(X, newshape=(X.shape[0], -1))
-    print("X_shaped ", X_reshaped.shape)
-    delta = X - Y
 
     dX, dW, db = None, None, None
     """
@@ -66,18 +61,14 @@ def linear_backward(dout, X, W, b):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-    # Compute gradients
-    # Backprop: W2, b2
-    dW = np.dot(X.T, dout)
-    db = np.sum(dout, axis=0, keepdims=True)
-    # Backprop: hidden layer
-    dX = np.dot(dout, W.T)
-    print("HERE ")
-    print(dW)
+
+    db = np.sum(dout, axis=0)
+    dX = dout.dot(W.T).reshape(X.shape)
+    dW = X.reshape(X.shape[0], W.shape[0]).T.dot(dout)
+
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
-
     return dX, dW, db
 
 
@@ -161,6 +152,12 @@ def dropout_forward(X, p=0.5, train=True, seed=42):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    out = X
+    if train:
+        q = 1-p
+        mask = np.random.binomial(n = 1, p=q, size = X.shape)
+        out = X*mask
+        out = out/q
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -192,6 +189,9 @@ def dropout_backward(dout, mask, p=0.5, train=True):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
+    dX = np.array(dout, copy=True)
+    if train:
+        dX = dX/(1-p)
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
