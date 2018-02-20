@@ -66,8 +66,14 @@ def linear_backward(dout, X, W, b):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-
-
+    # Compute gradients
+    # Backprop: W2, b2
+    dW = np.dot(X.T, dout)
+    db = np.sum(dout, axis=0, keepdims=True)
+    # Backprop: hidden layer
+    dX = np.dot(dout, W.T)
+    print("HERE ")
+    print(dW)
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
@@ -92,8 +98,10 @@ def relu_forward(X):
     ###########################################################################
     # print("X: ", X.shape)
     out = X.copy()  # Must use copy in numpy to avoid pass by reference.
-    out[out < 0] = 0
-    # np.clip(X, 0, None, out=out)
+    #out[out < 0] = 0
+    # ReLU activation function
+    relu = lambda z: np.maximum(0, z)
+    out = relu(out)
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
@@ -117,7 +125,9 @@ def relu_backward(dout, X):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
 
-
+    # Backprop: ReLU
+    dX = dout
+    dX[X <= 0] = 0
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################

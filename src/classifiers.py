@@ -25,7 +25,20 @@ def softmax(logits, y):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-
+    # Convert scores to probabilities
+    # Softmax Layer
+    #-np.max(logits)
+    softmax_ = lambda s: s / np.sum(s, axis=1, keepdims=True)
+    exp_sc = np.exp(logits - np.max(logits))
+    probs = softmax_(exp_sc)
+    N = y.shape[0]
+    # Cross-Entropy Error
+    corect_logprobs = -np.log(probs[range(N), y])
+    loss = np.sum(corect_logprobs) / N
+    # Backward pass: compute gradients
+    dscores = probs
+    dscores[range(N), y] -= 1
+    dlogits = dscores / N
 
     ###########################################################################
     #                            END OF YOUR CODE                             #
