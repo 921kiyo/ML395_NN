@@ -20,8 +20,9 @@ def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-
-
+    b = np.zeros(n_out)
+    W = np.random.normal(size=(n_in*n_out), scale=weight_scale, loc=0)
+    W = W.astype(dtype=dtype)
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
@@ -69,7 +70,19 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
+        self.linear_forward = dict()
+        print("hidden_dims: ", hidden_dims)
+        print("input_dims: ", input_dim)
+        print("num_classes: ", num_classes)
 
+        # for i in range(self.num_layers):
+        self.params["W1"] = None
+        self.params["b1"] = np.zeros(input_dim)
+        for item in range(2, self.num_layers):
+            W_keyword = "W" + str(item)
+            b_keyword = "b" + str(item)
+            print("W_keyword", W_keyword)
+            self.params[W_keyword], self.params[b_keyword] = random_init(input_dim, hidden_dims[item-2])
 
         #######################################################################
         #                            END OF YOUR CODE                         #
@@ -117,7 +130,10 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
-
+        # print("X.shape: ",X.shape)
+        # print("X: ",X)
+        # print("Y.shape: ",y.shape)
+        # print("Y: ",y)
 
         #######################################################################
         #                            END OF YOUR CODE                         #
