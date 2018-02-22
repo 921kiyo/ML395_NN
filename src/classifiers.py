@@ -34,6 +34,9 @@ def softmax(logits, y):
     N = y.shape[0]
     # Cross-Entropy Error
     corect_logprobs = -np.log(probs[range(N), y])
+
+    print ("***********")
+    print(corect_logprobs)
     loss = np.sum(corect_logprobs) / N
     # Backward pass: compute gradients
     dscores = probs

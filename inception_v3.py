@@ -140,8 +140,8 @@ class INCEPTION_V3(object):
         predictions = self.model.predict(input_data, verbose=False)
         return np.array(predictions[0])
 
-format_images("Train")
-format_images("Test")
+#format_images("Train")
+#format_images("Test")
 #sort_data(SOURCE_DATA,TRAIN_DATA,VALIDATE_DATA)
 iv3 = INCEPTION_V3()
 iv3.train(TRAIN_DATA ,VALIDATE_DATA,'inception_v3',NUMBER_EPOCHS)
