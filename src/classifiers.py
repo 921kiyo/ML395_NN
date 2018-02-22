@@ -29,6 +29,7 @@ def softmax(logits, y):
     # Softmax Layer
     #-np.max(logits)
     softmax_ = lambda s: s / np.sum(s, axis=1, keepdims=True)
+    #Regularisation
     exp_sc = np.exp(logits - np.max(logits))
     probs = softmax_(exp_sc)
     N = y.shape[0]

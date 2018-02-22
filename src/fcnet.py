@@ -135,20 +135,21 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
+        activations = []
+        z_values = []
 
         activation = X
+        activations.append(activation)
 
         for i in range(self.num_layers):
             W_keyword = "W" + str(i+1)
             b_keyword = "b" + str(i+1)
-            activation =  linear_forward(activation, self.params[W_keyword], self.params[b_keyword])
+            z =  linear_forward(activation, self.params[W_keyword], self.params[b_keyword])
+            z_values.append(z)
+            activation = relu_forward(z)
+            activations.append(activation)
 
         scores = activation
-
-        print("here")
-
-
-
 
         #######################################################################
         #                            END OF YOUR CODE                         #
@@ -170,7 +171,19 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
+        loss, dout = softmax(scores,y)
 
+        #Loop over the layers: add  (1/n) * 0.5 * reg * w^2
+        for i in range(1, self.num_layers+1):
+            loss += (self.reg / 2) * np.sum(np.square(self.params["W{}".format(i)]))
+
+
+        dx = relu_backward(dout, z_values[len(z_values)-1])
+        dx_two, grads["W3"], grads["b3"] = linear_backward(dx, activations[len(activations)-2] , self.params["W3"], self.params["b3"])
+        dx_two_b = relu_backward(dx_two, z_values[len(z_values)-2])
+        dx_three, grads["W2"], grads["b2"] = linear_backward(dx_two_b, activations[len(activations)-3] , self.params["W2"], self.params["b2"])
+        dx_three_b = relu_backward(dx_three, z_values[len(z_values)-3])
+        dx_four, grads["W1"], grads["b1"] = linear_backward(dx_three_b, activations[len(activations) - 4], self.params["W1"], self.params["b1"])
 
         #######################################################################
         #                            END OF YOUR CODE                         #
