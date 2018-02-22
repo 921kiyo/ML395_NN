@@ -71,18 +71,23 @@ class FullyConnectedNet(object):
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
         self.linear_forward = dict()
-        print("hidden_dims: ", hidden_dims)
-        print("input_dims: ", input_dim)
-        print("num_classes: ", num_classes)
+        #print("hidden_dims: ", hidden_dims)
+        #print("input_dims: ", input_dim)
+        #print("num_classes: ", num_classes)
 
-        # for i in range(self.num_layers):
-        self.params["W1"] = None
-        self.params["b1"] = np.zeros(input_dim)
-        for item in range(2, self.num_layers):
-            W_keyword = "W" + str(item)
-            b_keyword = "b" + str(item)
-            print("W_keyword", W_keyword)
-            self.params[W_keyword], self.params[b_keyword] = random_init(input_dim, hidden_dims[item-2])
+        # Set first hidden layer from the input dimensions and the first hidden layer dimensions
+        self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0])
+
+        # Set remaining hidden layers using input is previous hidden layers output and output is size
+        for item in range(1, len(hidden_dims)):
+            W_keyword = "W" + str(item+1)
+            b_keyword = "b" + str(item+1)
+            self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[item-1], hidden_dims[item])
+
+        # Set output layer using the final hidden layer and the number of classes
+        W_keyword = "W" + str(self.num_layers)
+        b_keyword = "b" + str(self.num_layers)
+        self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[-1], num_classes)
 
         #######################################################################
         #                            END OF YOUR CODE                         #
