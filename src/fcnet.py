@@ -21,7 +21,7 @@ def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
     b = np.zeros(n_out)
-    W = np.random.normal(size=(n_in*n_out), scale=weight_scale, loc=0)
+    W = np.random.normal(size=(n_in, n_out), scale=weight_scale, loc=0)
     W = W.astype(dtype=dtype)
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -135,10 +135,20 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
-        # print("X.shape: ",X.shape)
-        # print("X: ",X)
-        # print("Y.shape: ",y.shape)
-        # print("Y: ",y)
+
+        activation = X
+
+        for i in range(self.num_layers):
+            W_keyword = "W" + str(i+1)
+            b_keyword = "b" + str(i+1)
+            activation =  linear_forward(activation, self.params[W_keyword], self.params[b_keyword])
+
+        scores = activation
+
+        print("here")
+
+
+
 
         #######################################################################
         #                            END OF YOUR CODE                         #
