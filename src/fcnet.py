@@ -138,13 +138,17 @@ class FullyConnectedNet(object):
         activation = X
         activations.append(activation)
 
-        for i in range(self.num_layers):
-            W_keyword = "W" + str(i+1)
-            b_keyword = "b" + str(i+1)
+        for i in range(1,self.num_layers):
+            W_keyword = "W" + str(i)
+            b_keyword = "b" + str(i)
             z =  linear_forward(activation, self.params[W_keyword], self.params[b_keyword])
             z_values.append(z)
             activation = relu_forward(z)
             activations.append(activation)
+
+        #Linear final layer
+        activation = linear_forward(activation, self.params["W"+str(self.num_layers)], self.params["b"+str(self.num_layers)])
+        #activations.append(activation)
 
         scores = activation
         #######################################################################
@@ -173,8 +177,15 @@ class FullyConnectedNet(object):
         for i in range(1, self.num_layers+1):
             loss += (0.5*self.reg) * np.sum(np.square(self.params["W{}".format(i)]))
 
-        # Backwards pass
-        for j in reversed(range(0, self.num_layers)):
+        # Backwards pass: last layer should be linear:
+
+        dx, dW, db = linear_backward(dx, activations[len(activations)-1],self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)])
+        grads["W" + str(self.num_layers)] = dW
+        grads["W" + str(self.num_layers)] += self.reg * self.params["W" + str(self.num_layers)]
+        grads["b" + str(self.num_layers)] = db
+        #linear_forward(activation, self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)])
+
+        for j in reversed(range(0, self.num_layers-1)):
             # Relu pass with incoming Z value
             dx = relu_backward(dx, z_values[j])
             # Linear pass with activation value of incoming layer
