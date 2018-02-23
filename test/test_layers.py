@@ -111,7 +111,7 @@ class TestDropoutLayer(unittest.TestCase):
         self.assertTrue(e_test < 1e-12)
 
 
-    def test_output_relu_backward(self):
+    def test_output_dropout_backward(self):
         print_test("Testing dropout backward function:")
         seed = 395
         np.random.seed(seed)

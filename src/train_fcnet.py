@@ -12,12 +12,12 @@ accuracy on the validation set.
 #                           BEGIN OF YOUR CODE                            #
 ###########################################################################
 data = get_CIFAR10_data(num_training = 40000, num_validation= 2000, num_test= 2000)
-model = FullyConnectedNet(hidden_dims=(100, 100), reg=0.5, num_classes=10, dtype= np.float64)
+model = FullyConnectedNet(hidden_dims=(100, 100), reg=0.5, num_classes=10, dtype= np.float64, dropout=0.0001)
 
 solver = Solver(model, data,
                 update_rule='sgd',
                 optim_config={'learning_rate': 0.2*1e-3,},
-                num_epochs=400, batch_size=32,
+                num_epochs=100, batch_size=32,
                 print_every=100)
 solver.train()
 
