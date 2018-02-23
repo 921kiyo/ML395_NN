@@ -1,9 +1,9 @@
 import numpy as np
+import copy
 
 from src.classifiers import softmax
 from src.layers import (linear_forward, linear_backward, relu_forward,
                         relu_backward, dropout_forward, dropout_backward)
-
 
 
 def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
@@ -71,9 +71,6 @@ class FullyConnectedNet(object):
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
         self.linear_forward = dict()
-        #print("hidden_dims: ", hidden_dims)
-        #print("input_dims: ", input_dim)
-        #print("num_classes: ", num_classes)
 
         # Set first hidden layer from the input dimensions and the first hidden layer dimensions
         self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0])
@@ -150,7 +147,6 @@ class FullyConnectedNet(object):
             activations.append(activation)
 
         scores = activation
-
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -171,20 +167,22 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
-        loss, dout = softmax(scores,y)
+        loss, dx = softmax(scores,y)
 
-        #Loop over the layers: add  (1/n) * 0.5 * reg * w^2
+        # Apply L2 Regularisation
         for i in range(1, self.num_layers+1):
-            loss += (self.reg / 2) * np.sum(np.square(self.params["W{}".format(i)]))
+            loss += (0.5*self.reg) * np.sum(np.square(self.params["W{}".format(i)]))
 
-
-        dx = relu_backward(dout, z_values[len(z_values)-1])
-        dx_two, grads["W3"], grads["b3"] = linear_backward(dx, activations[len(activations)-2] , self.params["W3"], self.params["b3"])
-        dx_two_b = relu_backward(dx_two, z_values[len(z_values)-2])
-        dx_three, grads["W2"], grads["b2"] = linear_backward(dx_two_b, activations[len(activations)-3] , self.params["W2"], self.params["b2"])
-        dx_three_b = relu_backward(dx_three, z_values[len(z_values)-3])
-        dx_four, grads["W1"], grads["b1"] = linear_backward(dx_three_b, activations[len(activations) - 4], self.params["W1"], self.params["b1"])
-
+        # Backwards pass
+        for j in reversed(range(0, self.num_layers)):
+            # Relu pass with incoming Z value
+            dx = relu_backward(dx, z_values[j])
+            # Linear pass with activation value of incoming layer
+            dx, dW, db = linear_backward(dx, activations[j], self.params["W{}".format(j+1)], self.params["b{}".format(j+1)])
+            grads["W{}".format(j + 1)] = dW
+            # Regularisation
+            grads["W{}".format(j + 1)] += self.reg * self.params["W{}".format(j + 1)]
+            grads["b{}".format(j + 1)] = db
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
