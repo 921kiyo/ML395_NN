@@ -146,12 +146,13 @@ class FullyConnectedNet(object):
             activations.append(activation)
 
         # Put in a dropout on the last layer - Test
-        #dropout_result, mask = dropout_forward(activation, p= self.dropout_params["p"], train = self.dropout_params["train"])
-        #masks.append(mask)
-
-        #Linear final layer
-        scores = linear_forward(activation, self.params["W"+str(self.num_layers)], self.params["b"+str(self.num_layers)])
-        #scores = linear_forward(activation, self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # For dropout in last layer
+        if self.use_dropout:
+            dropout_result, mask = dropout_forward(activation, p= self.dropout_params["p"], train = self.dropout_params["train"])
+            masks.append(mask)
+            #Linear final layer
+            scores = linear_forward(activation, self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # For dropout in last layer
+        else:
+            scores = linear_forward(activation, self.params["W"+str(self.num_layers)], self.params["b"+str(self.num_layers)])
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -179,14 +180,17 @@ class FullyConnectedNet(object):
             loss += (0.5*self.reg) * np.sum(np.square(self.params["W{}".format(i)]))
 
         # Backwards pass: last layer should be linear:
-        dx, dW, db = linear_backward(dx, activations[-1], self.params["W" + str(self.num_layers)],self.params["b" + str(self.num_layers)])
-        #dx, dW, db = linear_backward(dx, dropout_result,self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # Version for with dropout in final layer
+        if self.use_dropout:
+            dx, dW, db = linear_backward(dx, dropout_result,self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # Version for with dropout in final layer
+        else:
+            dx, dW, db = linear_backward(dx, activations[-1], self.params["W" + str(self.num_layers)],self.params["b" + str(self.num_layers)])
         grads["W" + str(self.num_layers)] = dW
         grads["W" + str(self.num_layers)] += self.reg * self.params["W" + str(self.num_layers)]
         grads["b" + str(self.num_layers)] = db
 
         # Then reverse the dropout
-       # dx = dropout_backward(dx, mask=mask, p = self.dropout_params["p"], train = self.dropout_params["train"])
+        if self.use_dropout:
+            dx = dropout_backward(dx, mask=mask, p = self.dropout_params["p"], train = self.dropout_params["train"])
 
         for j in reversed(range(0, self.num_layers-1)):
             # Relu pass with incoming Z value
