@@ -8,11 +8,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d92be45e-fc0d-4feb-8b8f-ab42a48e72a1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/classifiers.py" afterPath="$PROJECT_DIR$/src/classifiers.py" />
       <change beforePath="$PROJECT_DIR$/src/fcnet.py" afterPath="$PROJECT_DIR$/src/fcnet.py" />
       <change beforePath="$PROJECT_DIR$/src/layers.py" afterPath="$PROJECT_DIR$/src/layers.py" />
       <change beforePath="$PROJECT_DIR$/src/overfit_fcnet.py" afterPath="$PROJECT_DIR$/src/overfit_fcnet.py" />
       <change beforePath="$PROJECT_DIR$/src/train_fcnet.py" afterPath="$PROJECT_DIR$/src/train_fcnet.py" />
-      <change beforePath="$PROJECT_DIR$/test/test_layers.py" afterPath="$PROJECT_DIR$/test/test_layers.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +23,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="classifiers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classifiers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="fcnet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fcnet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state relative-caret-position="870">
+              <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -38,8 +48,8 @@
       <file leaf-file-name="layers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/layers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="163" column="12" lean-forward="true" selection-start-line="163" selection-start-column="12" selection-end-line="163" selection-end-column="12" />
+            <state relative-caret-position="283">
+              <caret line="183" column="34" lean-forward="true" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -48,8 +58,8 @@
       <file leaf-file-name="solver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/solver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="301" column="45" lean-forward="true" selection-start-line="301" selection-start-column="45" selection-end-line="301" selection-end-column="45" />
+            <state relative-caret-position="132">
+              <caret line="102" column="30" lean-forward="false" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
               </folding>
@@ -57,31 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/data_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="53" column="59" lean-forward="false" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_fcnet.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_fcnet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="48" lean-forward="true" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="overfit_fcnet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/overfit_fcnet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="75" lean-forward="true" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
+            <state relative-caret-position="255">
+              <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -89,8 +79,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_fcnet.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train_fcnet.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/train_fcnet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="75" lean-forward="true" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_fcnet.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_fcnet.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
               <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
@@ -99,12 +101,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_layers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_layers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_layers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="131" column="41" lean-forward="true" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="389">
+              <caret line="123" column="47" lean-forward="true" selection-start-line="123" selection-start-column="47" selection-end-line="123" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gradient_check.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/gradient_check.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="110" column="23" lean-forward="true" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adhoc_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/adhoc_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,6 +155,7 @@
       <find>rel</find>
       <find>optim</find>
       <find>sav</find>
+      <find>seed</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,13 +169,15 @@
         <option value="$PROJECT_DIR$/src/test.py" />
         <option value="$PROJECT_DIR$/src/utils/data_utils.py" />
         <option value="$PROJECT_DIR$/src/utils/solver.py" />
-        <option value="$PROJECT_DIR$/src/classifiers.py" />
-        <option value="$PROJECT_DIR$/src/layers.py" />
         <option value="$PROJECT_DIR$/test/test_fcnet.py" />
+        <option value="$PROJECT_DIR$/test/adhoc_test.py" />
+        <option value="$PROJECT_DIR$/src/classifiers.py" />
+        <option value="$PROJECT_DIR$/test/test_layers.py" />
         <option value="$PROJECT_DIR$/src/overfit_fcnet.py" />
+        <option value="$PROJECT_DIR$/test/gradient_check.py" />
+        <option value="$PROJECT_DIR$/src/layers.py" />
         <option value="$PROJECT_DIR$/src/fcnet.py" />
         <option value="$PROJECT_DIR$/src/train_fcnet.py" />
-        <option value="$PROJECT_DIR$/test/test_layers.py" />
       </list>
     </option>
   </component>
@@ -177,11 +208,6 @@
             <path>
               <item name="ML395_NN" type="b2602c69:ProjectViewProjectNode" />
               <item name="ML395_NN" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ML395_NN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ML395_NN" type="462c0819:PsiDirectoryNode" />
-              <item name="datasets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ML395_NN" type="b2602c69:ProjectViewProjectNode" />
@@ -221,7 +247,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward">
+  <component name="RunManager" selected="Python.train_fcnet">
+    <configuration name="gradient_check" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ML395_NN" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/gradient_check.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="overfit_fcnet" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -236,7 +280,7 @@
       <module name="ML395_NN" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/overfit_fcnet.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
@@ -343,20 +387,6 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ML395_NN" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_layers.TestDropoutLayer.test_output_dropout_backward&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -372,19 +402,19 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
-      <item index="1" class="java.lang.String" itemvalue="Python.train_fcnet" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_layers" />
+      <item index="0" class="java.lang.String" itemvalue="Python.train_fcnet" />
+      <item index="1" class="java.lang.String" itemvalue="Python.test_layers" />
+      <item index="2" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
+      <item index="3" class="java.lang.String" itemvalue="Python.gradient_check" />
       <item index="4" class="java.lang.String" itemvalue="Python.test_fcnet" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_layers" />
-        <item index="2" class="java.lang.String" itemvalue="Python.train_fcnet" />
+        <item index="0" class="java.lang.String" itemvalue="Python.train_fcnet" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_fcnet" />
+        <item index="2" class="java.lang.String" itemvalue="Python.gradient_check" />
         <item index="3" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test_fcnet" />
+        <item index="4" class="java.lang.String" itemvalue="Python.train_fcnet" />
       </list>
     </recent_temporary>
   </component>
@@ -405,35 +435,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 15h 36m 44s.xml">
+    <history-entry file="Unittests_for_test_classifiers_TestSoftmax_test_derivative_softmax - 2018.02.26 at 22h 53m 48s.xml">
+      <configuration name="Unittests for test_classifiers.TestSoftmax.test_derivative_softmax" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 14h 58m 10s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 15h 37m 04s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 14h 58m 14s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 16h 11m 19s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 14h 58m 24s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 18h 14m 16s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 14h 58m 30s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 18h 14m 35s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 14h 58m 49s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 18h 14m 45s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 14h 59m 21s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 18h 14m 46s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 15h 04m 16s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 18h 14m 47s.xml">
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.26 at 15h 04m 38s.xml">
       <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_backward - 2018.02.23 at 18h 15m 19s.xml">
-      <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_backward" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_layers_py - 2018.02.15 at 23h 54m 53s.xml">
-      <configuration name="Unittests in test_layers.py" configurationId="tests" />
+    <history-entry file="Unittests_for_test_layers_TestDropoutLayer_test_output_dropout_forward - 2018.02.26 at 22h 54m 15s.xml">
+      <configuration name="Unittests for test_layers.TestDropoutLayer.test_output_dropout_forward" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -443,7 +473,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17778936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4244984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41077086" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -467,13 +497,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/fcnet.py</url>
-          <line>149</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -481,73 +504,71 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="30" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="exp_sc" language="Python" />
+        <watch expression="logits - np.max(logits, axis=1, keepdims=True)" language="Python" />
+        <watch expression="np.exp(logits - np.max(logits, axis=1, keepdims=True))" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>100*(activation - before)/before</expression-string>
+        <expression-string>np.exp(logits - np.max(logits, axis=1, keepdims=True))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>activation - before</expression-string>
+        <expression-string>logits - np.max(logits, axis=1, keepdims=True)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>before == activation</expression-string>
+        <expression-string>exp_sc</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>mask</expression-string>
+        <expression-string>self.num_layers</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(z_values)</expression-string>
+        <expression-string>self.params[&quot;W2&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(activations)</expression-string>
+        <expression-string>self.params[&quot;W0&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>self.params[&quot;W&quot;+str(self.num_layers)]</expression-string>
+        <expression-string>self.params[&quot;W1&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>&quot;W&quot;+str(self.num_layers)</expression-string>
+        <expression-string>self.params[&quot;W3&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>W&quot;+str(self.num_layers)</expression-string>
+        <expression-string>loss</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>self.reg</expression-string>
+        <expression-string>dropout_result.dtype</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/test_fcnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_layers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
@@ -560,9 +581,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -624,7 +643,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
           <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
-          <folding />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -640,9 +661,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -686,7 +705,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="12" column="47" lean-forward="true" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -702,9 +723,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -748,9 +767,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -816,9 +833,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -849,26 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/gradient_check.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_classifiers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -885,18 +880,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classifiers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/optim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="110">
+          <caret line="51" column="26" lean-forward="false" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -909,10 +896,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_classifiers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/adhoc_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/gradient_check.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="110" column="23" lean-forward="true" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_layers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="123" column="47" lean-forward="true" selection-start-line="123" selection-start-column="47" selection-end-line="123" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classifiers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_fcnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/overfit_fcnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fcnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/solver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1815">
-          <caret line="301" column="45" lean-forward="true" selection-start-line="301" selection-start-column="45" selection-end-line="301" selection-end-column="45" />
+        <state relative-caret-position="132">
+          <caret line="102" column="30" lean-forward="false" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
@@ -921,53 +982,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/layers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="163" column="12" lean-forward="true" selection-start-line="163" selection-start-column="12" selection-end-line="163" selection-end-column="12" />
+        <state relative-caret-position="283">
+          <caret line="183" column="34" lean-forward="true" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fcnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_fcnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="48" lean-forward="true" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/overfit_fcnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="75" lean-forward="true" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/train_fcnet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_layers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="131" column="41" lean-forward="true" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="180">
+          <caret line="12" column="75" lean-forward="true" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

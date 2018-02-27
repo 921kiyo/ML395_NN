@@ -28,18 +28,29 @@ def softmax(logits, y):
     # Convert scores to probabilities
     # Softmax Layer
     #-np.max(logits)
-    softmax_ = lambda s: s / np.sum(s, axis=1, keepdims=True)
-    #Regularisation
-    exp_sc = np.exp(logits - np.max(logits))
-    probs = softmax_(exp_sc)
-    N = y.shape[0]
-    # Cross-Entropy Error
-    corect_logprobs = -np.log(probs[range(N), y])
-    loss = np.sum(corect_logprobs) / N
-    # Backward pass: compute gradients
-    dscores = probs
-    dscores[range(N), y] -= 1
-    dlogits = dscores / N
+    # softmax_ = lambda s: s / np.sum(s, axis=1, keepdims=True)
+    # #Regularisation
+    # exp_sc = np.exp(logits - np.max(logits))
+    # probs = softmax_(exp_sc)
+    # N = y.shape[0]
+    # # Cross-Entropy Error
+    # corect_logprobs = -np.log(probs[range(N), y])
+    # loss = np.sum(corect_logprobs) / N
+    # # Backward pass: compute gradients
+    # dscores = probs
+    # dscores[range(N), y] -= 1
+    # dlogits = dscores / N
+    x = logits
+
+    probs = np.exp(x - np.max(x, axis=1, keepdims=True))
+    probs /= np.sum(probs, axis=1, keepdims=True)
+    N = x.shape[0]
+    loss = -np.sum(np.log(probs[np.arange(N), y])) / N
+    dx = probs.copy()
+    dx[np.arange(N), y] -= 1
+    dx /= N
+
+    dlogits = dx
 
     ###########################################################################
     #                            END OF YOUR CODE                             #

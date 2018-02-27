@@ -11,17 +11,27 @@ accuracy on the validation set.
 ###########################################################################
 #                           BEGIN OF YOUR CODE                            #
 ###########################################################################
-data = get_CIFAR10_data(num_training = 40000, num_validation= 2000, num_test= 2000)
-model = FullyConnectedNet(hidden_dims=(100, 100), reg=0.5, num_classes=10, dtype= np.float64, dropout=0.0001)
+#data = get_CIFAR10_data(num_training = 40000, num_validation= 2000, num_test= 2000)
+data = get_CIFAR10_data()
+model = FullyConnectedNet(hidden_dims=[80], reg=0, dropout=0) #weight_scale=1e-4,
 
 solver = Solver(model, data,
                 update_rule='sgd',
-                optim_config={'learning_rate': 0.2*1e-3,},
-                num_epochs=100, batch_size=32,
-                print_every=100)
+                optim_config={'learning_rate': 1e-3}, lr_decay= 0.85,
+                num_epochs=50, batch_size=100,
+                print_every=500)
 solver.train()
 
 solver._save_checkpoint() #save
+
+# model = FullyConnectedNet(hidden_dims=([80]), reg=0.0, num_classes=10, dtype= np.float64, dropout=0.3, seed=0)
+#
+# solver = Solver(model, data,
+#                 update_rule='sgd',
+#                 optim_config={'learning_rate': 0.2*1e-3,},
+#                 num_epochs=150, batch_size=32,
+#                 print_every=100)
+
 
 ##############################################################################
 #                             END OF YOUR CODE                               #
