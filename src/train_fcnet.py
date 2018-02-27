@@ -18,7 +18,7 @@ model = FullyConnectedNet(hidden_dims=[80], reg=0, dropout=0) #weight_scale=1e-4
 solver = Solver(model, data,
                 update_rule='sgd',
                 optim_config={'learning_rate': 1e-3}, lr_decay= 0.85,
-                num_epochs=50, batch_size=100,
+                num_epochs=50, batch_size=70,
                 print_every=500)
 solver.train()
 

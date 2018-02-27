@@ -8,10 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d92be45e-fc0d-4feb-8b8f-ab42a48e72a1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/classifiers.py" afterPath="$PROJECT_DIR$/src/classifiers.py" />
       <change beforePath="$PROJECT_DIR$/src/fcnet.py" afterPath="$PROJECT_DIR$/src/fcnet.py" />
-      <change beforePath="$PROJECT_DIR$/src/layers.py" afterPath="$PROJECT_DIR$/src/layers.py" />
-      <change beforePath="$PROJECT_DIR$/src/overfit_fcnet.py" afterPath="$PROJECT_DIR$/src/overfit_fcnet.py" />
       <change beforePath="$PROJECT_DIR$/src/train_fcnet.py" afterPath="$PROJECT_DIR$/src/train_fcnet.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fcnet.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fcnet.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/fcnet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
-              <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+            <state relative-caret-position="300">
+              <caret line="20" column="72" lean-forward="true" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -79,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_fcnet.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="train_fcnet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/train_fcnet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="75" lean-forward="true" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+            <state relative-caret-position="105">
+              <caret line="7" column="65" lean-forward="true" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -176,8 +173,8 @@
         <option value="$PROJECT_DIR$/src/overfit_fcnet.py" />
         <option value="$PROJECT_DIR$/test/gradient_check.py" />
         <option value="$PROJECT_DIR$/src/layers.py" />
-        <option value="$PROJECT_DIR$/src/fcnet.py" />
         <option value="$PROJECT_DIR$/src/train_fcnet.py" />
+        <option value="$PROJECT_DIR$/src/fcnet.py" />
       </list>
     </option>
   </component>
@@ -248,6 +245,24 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.train_fcnet">
+    <configuration name="fcnet" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ML395_NN" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/fcnet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="gradient_check" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -297,24 +312,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ML395_NN" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_fcnet.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="test_layers" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ML395_NN" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_layers.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -403,18 +400,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.train_fcnet" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test_layers" />
-      <item index="2" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
-      <item index="3" class="java.lang.String" itemvalue="Python.gradient_check" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test_fcnet" />
+      <item index="1" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
+      <item index="2" class="java.lang.String" itemvalue="Python.gradient_check" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_fcnet" />
+      <item index="4" class="java.lang.String" itemvalue="Python.fcnet" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.train_fcnet" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_fcnet" />
-        <item index="2" class="java.lang.String" itemvalue="Python.gradient_check" />
-        <item index="3" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
-        <item index="4" class="java.lang.String" itemvalue="Python.train_fcnet" />
+        <item index="1" class="java.lang.String" itemvalue="Python.fcnet" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_fcnet" />
+        <item index="3" class="java.lang.String" itemvalue="Python.gradient_check" />
+        <item index="4" class="java.lang.String" itemvalue="Python.overfit_fcnet" />
       </list>
     </recent_temporary>
   </component>
@@ -934,14 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classifiers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_fcnet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -954,16 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fcnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -988,10 +967,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/classifiers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/train_fcnet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="75" lean-forward="true" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
+        <state relative-caret-position="105">
+          <caret line="7" column="65" lean-forward="true" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fcnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="72" lean-forward="true" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

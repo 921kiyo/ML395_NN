@@ -20,8 +20,8 @@ def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
     b = np.zeros(n_out)
-    #W = np.random.normal(size=(n_in, n_out), scale=weight_scale, loc=0)
-    W = weight_scale * np.random.randn(n_in, n_out)
+    W = np.random.normal(size=(n_in, n_out), scale=weight_scale, loc=0)
+    #W = weight_scale * np.random.randn(n_in, n_out)
     W = W.astype(dtype=dtype)
     ###########################################################################
     #                            END OF YOUR CODE                             #
