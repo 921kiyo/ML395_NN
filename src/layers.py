@@ -12,12 +12,7 @@ def linear_forward(X, W, b):
     Returns:
     - out: linear transformation to the incoming data
 
-
     """
-
-    X_reshaped = np.reshape(X, newshape=(X.shape[0],-1))
-    a = np.matmul(X_reshaped,W)
-    out = np.add(a,b)
 
     """
     TODO: Implement the linear forward pass. Store your result in `out`.

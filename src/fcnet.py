@@ -10,7 +10,6 @@ def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
     """
     Weights should be initialized from a normal distribution with standard
     deviation equal to weight_scale and biases should be initialized to zero.
-
     Args:
     - n_in: The number of input nodes into each output.
     - n_out: The number of output nodes for each input.
@@ -22,9 +21,8 @@ def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
     ###########################################################################
     b = np.zeros(n_out)
     W = np.random.normal(size=(n_in, n_out), scale=weight_scale, loc=0)
-
+    #W = weight_scale * np.random.randn(n_in, n_out)
     W = W.astype(dtype=dtype)
-
     ###########################################################################
     #                            END OF YOUR CODE                             #
     ###########################################################################
@@ -53,7 +51,6 @@ class FullyConnectedNet(object):
         - dropout: A scalar between 0. and 1. determining the dropout factor.
         If dropout = 0., then dropout is not applied.
         - reg: Regularisation factor.
-
         """
         self.dtype = dtype
         self.reg = reg
@@ -73,18 +70,19 @@ class FullyConnectedNet(object):
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
         # Set first hidden layer from the input dimensions and the first hidden layer dimensions
-        self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0], weight_scale = weight_scale)
+        self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0], dtype=dtype, weight_scale=weight_scale)
 
-        # Set remaining hidden layers using input is previous hidden layers output and output is size
+        # # Set remaining hidden layers using input is previous hidden layers output and output is size
         for item in range(1, len(hidden_dims)):
             W_keyword = "W" + str(item+1)
             b_keyword = "b" + str(item+1)
-            self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[item-1], hidden_dims[item], weight_scale = weight_scale)
+            self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[item-1], hidden_dims[item], dtype=dtype, weight_scale = weight_scale)
 
         # Set output layer using the final hidden layer and the number of classes
         W_keyword = "W" + str(self.num_layers)
         b_keyword = "b" + str(self.num_layers)
-        self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[-1], num_classes)
+        self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[-1], num_classes, dtype=dtype)
+
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -96,13 +94,11 @@ class FullyConnectedNet(object):
         if self.use_dropout:
             self.dropout_params = {"train": True, "p": dropout}
             if seed is not None:
-                self.dropout_params["seed"] = 0
-            # else:
-            #     self.dropout_params["seed"] = None
+                self.dropout_params["seed"] = seed
         # Cast all parameters to the correct datatype
-
         for k, v in self.params.items():
             self.params[k] = v.astype(dtype)
+
     def loss(self, X, y=None):
         """
         Compute loss and gradient for a minibatch of data.
@@ -133,42 +129,41 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
-        activations = []
-        z_values = []
-        masks = dict()
+
+        # print("LINEAR PASS")
+        # linear_cache["L{}".format(1)] = linear_forward(X, self.params["W{}".format(1)], self.params["b{}".format(1)])
+        # print("END OF PASS")
         output_cache = dict()
-
         for i in range(1,self.num_layers):
-            W_keyword = "W" + str(i)
-            b_keyword = "b" + str(i)
-
             if i == 1:
-                linear_cache[i] =  linear_forward(X, self.params[W_keyword], self.params[b_keyword])
-            else:
-                linear_cache[i] =  linear_forward(output_cache[i-1], self.params[W_keyword], self.params[b_keyword])
-            relu_cache[i] = relu_forward(linear_cache[i])
+                linear_cache["L{}".format(i)] = linear_forward(X, self.params["W{}".format(i)], self.params["b{}".format(i)])
 
-            # Put in a dropout on the last layer - Test
+            else:
+                if self.use_dropout:
+                    linear_cache["L{}".format(i)] = linear_forward(dropout_cache["D{}".format(i-1)], self.params["W{}".format(i)], self.params["b{}".format(i)])
+                else:
+                    linear_cache["L{}".format(i)] = linear_forward(relu_cache["R{}".format(i-1)], self.params["W{}".format(i)], self.params["b{}".format(i)])
+
+            relu_cache["R{}".format(i)] = relu_forward(linear_cache["L{}".format(i)])
+
             if self.use_dropout:
                 s = None
                 if 'seed' in self.dropout_params.keys():
                     s = self.dropout_params['seed']
-                # if self.dropout_params["seed"] is not None:
-                dropout_cache["d" + str(i)], masks["m" + str(i)] = dropout_forward(X = relu_cache[i], p= self.dropout_params["p"], train = self.dropout_params["train"], seed=0)
-                # else:
-                    # dropout_cache["d" + str(i)], masks["m" + str(i)] = dropout_forward(X = relu_cache[i], p= self.dropout_params["p"], train = self.dropout_params["train"])
+                p = self.dropout_params["p"]
+                t = self.dropout_params["train"]
+                dropout_cache["D{}".format(i)], dropout_cache["M{}".format(i)] =  dropout_forward(relu_cache["R{}".format(i)], p=p, train=t , seed=s)
 
-                output_cache[i] = dropout_cache["d" + str(i)]
-            # #Linear final layer
-            # scores = linear_forward(activation, self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # For dropout in last layer
+                # output_cache[i] = dropout_cache["D{}".format(i)]
 
+        #Linear final layer
+        scores = None
         if self.use_dropout:
-            dropout_cache["d" + str(self.num_layers)], masks["m" + str(self.num_layers)] = dropout_forward(output_cache[i-1], p= self.dropout_params["p"], train = self.dropout_params["train"])
-
-            #Linear final layer
-            scores = linear_forward(output_cache[i-1], self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # For dropout in last layer
+            scores = linear_forward(dropout_cache["D{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)], self.params["b{}".format(self.num_layers)])
         else:
-            scores = linear_forward(output_cache[i-1], self.params["W"+str(self.num_layers)], self.params["b"+str(self.num_layers)])
+            scores = linear_forward(relu_cache["R{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)], self.params["b{}".format(self.num_layers)])
+
+        #print("FOWARD PASS COMPLETE")
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -195,28 +190,39 @@ class FullyConnectedNet(object):
         for i in range(1, self.num_layers+1):
             loss += (0.5*self.reg) * np.sum(np.square(self.params["W{}".format(i)]))
 
+        # Backwards pass: last layer should be linear:
         if self.use_dropout:
-            dx, dW, db = linear_backward(dx, dropout_cache["d" + str(self.num_layers)],self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # Version for with dropout in final layer
+            dx, dW, db = linear_backward(dx, dropout_cache["D{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)],self.params["b{}".format(self.num_layers)])
         else:
-            dx, dW, db = linear_backward(dx, relu_cache[self.num_layers-1], self.params["W" + str(self.num_layers)],self.params["b" + str(self.num_layers)])
-        grads["W" + str(self.num_layers)] = dW
-        grads["W" + str(self.num_layers)] += self.reg * self.params["W" + str(self.num_layers)]
-        grads["b" + str(self.num_layers)] = db
+            dx, dW, db = linear_backward(dx, relu_cache["R{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)],self.params["b{}".format(self.num_layers)])
 
-        for j in range(self.num_layers-1, 0, -1):
-            # Relu pass with incoming Z value
-            dx = relu_backward(dx, linear_cache[j])
+        #dx, dW, db = linear_backward(dx, dropout_result,self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # Version for with dropout in final layer
+        grads["W{}".format(self.num_layers)] = dW
+        grads["W{}".format(self.num_layers)] += self.reg * self.params["W{}".format(self.num_layers)]
+        grads["b{}".format(self.num_layers)] = db
+
+        #print("LOOP BACKWARDS THROUGH REMAINING LAYERS")
+        for j in reversed(range(1, self.num_layers)):
+
+            # Reverse dropout
+            if self.use_dropout:
+                dx = dropout_backward(dx, mask=dropout_cache["M{}".format(j)], p = self.dropout_params["p"], train = self.dropout_params["train"])
+
+            # Relu  backward pass with incoming Z value
+            dx = relu_backward(dx, linear_cache["L{}".format(j)])
             # Linear pass with activation value of incoming layer
-            # Backwards pass: last layer should be linear:
-            if self.use_dropout and j > 1:
-                dx, dW, db = linear_backward(dx, dropout_cache["d{}".format(j)], self.params["W{}".format(j)], self.params["b{}".format(j)])
-                # Then reverse the dropout
-                dx = dropout_backward(dout = dx, mask=masks["m{}".format(j)], p = self.dropout_params["p"], train = self.dropout_params["train"])
+            if j == 1:
+                dx, dW, db = linear_backward(dx, X, self.params["W{}".format(j)], self.params["b{}".format(j)])
             else:
-                if(j == 1):
-                    dx, dW, db = linear_backward(dx, X, self.params["W{}".format(j)], self.params["b{}".format(j)])
+                foo = None
+                if self.use_dropout:
+                    foo = dropout_cache["D{}".format(j-1)]
                 else:
-                    dx, dW, db = linear_backward(dx, relu_cache[j], self.params["W{}".format(j)], self.params["b{}".format(j)])
+                    foo = relu_cache["R{}".format(j-1)]
+
+                dx, dW, db = linear_backward(dx, foo, self.params["W{}".format(j)], self.params["b{}".format(j)])
+
+
             grads["W{}".format(j)] = dW
             # Regularisation
             grads["W{}".format(j)] += self.reg * self.params["W{}".format(j)]
