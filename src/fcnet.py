@@ -73,19 +73,18 @@ class FullyConnectedNet(object):
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
         # Set first hidden layer from the input dimensions and the first hidden layer dimensions
-        self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0])
+        self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0], weight_scale = weight_scale)
 
         # Set remaining hidden layers using input is previous hidden layers output and output is size
         for item in range(1, len(hidden_dims)):
             W_keyword = "W" + str(item+1)
             b_keyword = "b" + str(item+1)
-            self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[item-1], hidden_dims[item])
+            self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[item-1], hidden_dims[item], weight_scale = weight_scale)
 
         # Set output layer using the final hidden layer and the number of classes
         W_keyword = "W" + str(self.num_layers)
         b_keyword = "b" + str(self.num_layers)
         self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[-1], num_classes)
-
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -97,9 +96,9 @@ class FullyConnectedNet(object):
         if self.use_dropout:
             self.dropout_params = {"train": True, "p": dropout}
             if seed is not None:
-                self.dropout_params["seed"] = seed
-            else:
-                self.dropout_params["seed"] = None
+                self.dropout_params["seed"] = 0
+            # else:
+            #     self.dropout_params["seed"] = None
         # Cast all parameters to the correct datatype
 
         for k, v in self.params.items():
@@ -151,10 +150,13 @@ class FullyConnectedNet(object):
 
             # Put in a dropout on the last layer - Test
             if self.use_dropout:
-                if self.dropout_params["seed"] is not None:
-                    dropout_cache["d" + str(i)], masks["m" + str(i)] = dropout_forward(X = relu_cache[i], p= self.dropout_params["p"], train = self.dropout_params["train"], seed =self.dropout_params["seed"])
-                else:
-                    dropout_cache["d" + str(i)], masks["m" + str(i)] = dropout_forward(X = relu_cache[i], p= self.dropout_params["p"], train = self.dropout_params["train"])
+                s = None
+                if 'seed' in self.dropout_params.keys():
+                    s = self.dropout_params['seed']
+                # if self.dropout_params["seed"] is not None:
+                dropout_cache["d" + str(i)], masks["m" + str(i)] = dropout_forward(X = relu_cache[i], p= self.dropout_params["p"], train = self.dropout_params["train"], seed=0)
+                # else:
+                    # dropout_cache["d" + str(i)], masks["m" + str(i)] = dropout_forward(X = relu_cache[i], p= self.dropout_params["p"], train = self.dropout_params["train"])
 
                 output_cache[i] = dropout_cache["d" + str(i)]
             # #Linear final layer
