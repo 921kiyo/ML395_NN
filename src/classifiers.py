@@ -42,7 +42,7 @@ def softmax(logits, y):
     dlogits /= K
 
     # Add epsilon to avoid divide by zero error in loss
-    epsilon = np.finfo(np.float32).eps
+    epsilon = np.finfo(np.float64).eps
     loss = -np.sum(np.log(probs[np.arange(K), y] + epsilon)) / K
     ###########################################################################
     #                            END OF YOUR CODE                             #

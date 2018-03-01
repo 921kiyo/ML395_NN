@@ -21,7 +21,6 @@ def random_init(n_in, n_out, weight_scale=5e-2, dtype=np.float32):
     ###########################################################################
     b = np.zeros(n_out)
     W = np.random.normal(size=(n_in, n_out), scale=weight_scale, loc=0)
-    #W = weight_scale * np.random.randn(n_in, n_out)
     W = W.astype(dtype=dtype)
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -81,7 +80,7 @@ class FullyConnectedNet(object):
         # Set output layer using the final hidden layer and the number of classes
         W_keyword = "W" + str(self.num_layers)
         b_keyword = "b" + str(self.num_layers)
-        self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[-1], num_classes, dtype=dtype)
+        self.params[W_keyword], self.params[b_keyword] = random_init(hidden_dims[-1], num_classes, dtype=dtype, weight_scale = weight_scale)
 
         #######################################################################
         #                            END OF YOUR CODE                         #
@@ -129,15 +128,11 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
-
-        # print("LINEAR PASS")
-        # linear_cache["L{}".format(1)] = linear_forward(X, self.params["W{}".format(1)], self.params["b{}".format(1)])
-        # print("END OF PASS")
-        output_cache = dict()
+        # Forward pass: loop through all layers
+        # store the linear activations, relu and masks
         for i in range(1,self.num_layers):
             if i == 1:
                 linear_cache["L{}".format(i)] = linear_forward(X, self.params["W{}".format(i)], self.params["b{}".format(i)])
-
             else:
                 if self.use_dropout:
                     linear_cache["L{}".format(i)] = linear_forward(dropout_cache["D{}".format(i-1)], self.params["W{}".format(i)], self.params["b{}".format(i)])
@@ -154,8 +149,6 @@ class FullyConnectedNet(object):
                 t = self.dropout_params["train"]
                 dropout_cache["D{}".format(i)], dropout_cache["M{}".format(i)] =  dropout_forward(relu_cache["R{}".format(i)], p=p, train=t , seed=s)
 
-                # output_cache[i] = dropout_cache["D{}".format(i)]
-
         #Linear final layer
         scores = None
         if self.use_dropout:
@@ -163,7 +156,6 @@ class FullyConnectedNet(object):
         else:
             scores = linear_forward(relu_cache["R{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)], self.params["b{}".format(self.num_layers)])
 
-        #print("FOWARD PASS COMPLETE")
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -184,44 +176,42 @@ class FullyConnectedNet(object):
         #######################################################################
         #                           BEGIN OF YOUR CODE                        #
         #######################################################################
+        # Compute the loss and gradients using softmax
         loss, dx = softmax(scores,y)
 
         # Apply L2 Regularisation
         for i in range(1, self.num_layers+1):
             loss += (0.5*self.reg) * np.sum(np.square(self.params["W{}".format(i)]))
 
-        # Backwards pass: last layer should be linear:
+        # Backwards pass: Final linear layer
         if self.use_dropout:
             dx, dW, db = linear_backward(dx, dropout_cache["D{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)],self.params["b{}".format(self.num_layers)])
         else:
             dx, dW, db = linear_backward(dx, relu_cache["R{}".format(self.num_layers-1)], self.params["W{}".format(self.num_layers)],self.params["b{}".format(self.num_layers)])
 
-        #dx, dW, db = linear_backward(dx, dropout_result,self.params["W" + str(self.num_layers)], self.params["b" + str(self.num_layers)]) # Version for with dropout in final layer
         grads["W{}".format(self.num_layers)] = dW
+        # L2 Regularisation
         grads["W{}".format(self.num_layers)] += self.reg * self.params["W{}".format(self.num_layers)]
         grads["b{}".format(self.num_layers)] = db
 
-        #print("LOOP BACKWARDS THROUGH REMAINING LAYERS")
+        # Loop backwards through the layers to the first layer
         for j in reversed(range(1, self.num_layers)):
-
             # Reverse dropout
             if self.use_dropout:
                 dx = dropout_backward(dx, mask=dropout_cache["M{}".format(j)], p = self.dropout_params["p"], train = self.dropout_params["train"])
 
-            # Relu  backward pass with incoming Z value
+            # Relu backward pass with incoming Z value
             dx = relu_backward(dx, linear_cache["L{}".format(j)])
+
             # Linear pass with activation value of incoming layer
             if j == 1:
                 dx, dW, db = linear_backward(dx, X, self.params["W{}".format(j)], self.params["b{}".format(j)])
             else:
                 foo = None
                 if self.use_dropout:
-                    foo = dropout_cache["D{}".format(j-1)]
+                    dx, dW, db = linear_backward(dx, dropout_cache["D{}".format(j-1)], self.params["W{}".format(j)], self.params["b{}".format(j)])
                 else:
-                    foo = relu_cache["R{}".format(j-1)]
-
-                dx, dW, db = linear_backward(dx, foo, self.params["W{}".format(j)], self.params["b{}".format(j)])
-
+                    dx, dW, db = linear_backward(dx, relu_cache["R{}".format(j-1)], self.params["W{}".format(j)], self.params["b{}".format(j)])
 
             grads["W{}".format(j)] = dW
             # Regularisation
