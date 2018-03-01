@@ -5,19 +5,19 @@ from src.utils.solver import Solver
 from src.utils.data_utils import get_CIFAR10_data
 
 """
-TODO: Use a Solver instance to train a TwoLayerNet that achieves at least 50% 
+TODO: Use a Solver instance to train a TwoLayerNet that achieves at least 50%
 accuracy on the validation set.
 """
 ###########################################################################
 #                           BEGIN OF YOUR CODE                            #
 ###########################################################################
-data = get_CIFAR10_data(num_training = 40000, num_validation= 2000, num_test= 2000)
-model = FullyConnectedNet(hidden_dims=(100, 100), reg=0.5, num_classes=10, dtype= np.float64, dropout=0.0001)
+data = get_CIFAR10_data()
+model = FullyConnectedNet(hidden_dims=[128], reg=1e-3, num_classes=10)
 
 solver = Solver(model, data,
                 update_rule='sgd',
-                optim_config={'learning_rate': 0.2*1e-3,},
-                num_epochs=100, batch_size=32,
+                optim_config={'learning_rate': 1e-3,}, lr_decay = 0.85,
+                num_epochs=100, batch_size=70,
                 print_every=100)
 solver.train()
 
