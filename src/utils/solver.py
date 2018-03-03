@@ -286,6 +286,7 @@ class Solver(object):
             # iteration, and at the end of each epoch.
             first_it = (t == 0)
             last_it = (t == num_iterations - 1)
+
             if first_it or last_it or epoch_end:
                 train_acc = self.check_accuracy(self.X_train, self.y_train,
                     num_samples=self.num_train_samples)
@@ -293,6 +294,7 @@ class Solver(object):
                     num_samples=self.num_val_samples)
                 self.train_acc_history.append(train_acc)
                 self.val_acc_history.append(val_acc)
+
                 self._save_checkpoint()
 
                 if self.verbose:
@@ -305,6 +307,17 @@ class Solver(object):
                     self.best_params = {}
                     for k, v in self.model.params.items():
                         self.best_params[k] = v.copy()
+
+
+
+            if np.isnan(self.loss_history[-1]) or self.loss_history[-1]>1e+5:
+                self.model.params = self.best_params
+                return
+
+            if self.epoch > 10 and self.val_acc_history[-10] >= self.val_acc_history[-1]:
+                self.model.params = self.best_params
+                return
+
 
         # At the end of training swap the best params into the model
         self.model.params = self.best_params
