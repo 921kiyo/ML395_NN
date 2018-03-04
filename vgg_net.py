@@ -7,7 +7,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import load_model
 from common import *
 import numpy as np
-from Load_Images import *
+#from Load_Images import *
 
 
 class VGG(object):
@@ -27,13 +27,14 @@ class VGG(object):
         self.model.add(Conv2D(32, (3, 3), activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Dropout(0.25))
+        
         self.model.add(Conv2D(64, (3, 3), activation='relu'))
         self.model.add(Conv2D(64, (3, 3), activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Dropout(0.25))
 
-        self.model.add(Conv2D(64, (3, 3), activation='relu'))
-        self.model.add(Conv2D(64, (3, 3), activation='relu'))
+        self.model.add(Conv2D(128, (3, 3), activation='relu'))
+        self.model.add(Conv2D(128, (3, 3), activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Dropout(0.25))
 
@@ -124,5 +125,3 @@ class VGG(object):
 #format_images("Train")
 #format_images("Test")
 #sort_data(SOURCE_DATA,TRAIN_DATA,VALIDATE_DATA)
-vgg = VGG()
-vgg.train(TRAIN_DATA ,VALIDATE_DATA,'vgg',NUMBER_EPOCHS)

@@ -7,11 +7,11 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import load_model
 from common import *
 import numpy as np
-from Load_Images import *
+#from Load_Images import *
 from keras.optimizers import Adadelta
 
 
-class VGG(object):
+class VGG_new(object):
     def __init__(self,lr=0.001,cached_model= None):
 
         self.model_name = "vgg_net"
@@ -106,7 +106,7 @@ class VGG(object):
             color_mode="grayscale",
             target_size=(IM_HEIGHT, IM_WIDTH),
             batch_size=BATCH_SIZE,
-            class_mode="categorical")  # CHANGE THIS!!!
+            class_mode="categorical")
 
         self.model.fit_generator(train_generator, validation_data=validate_generator,callbacks=[
                                                              keras.callbacks.TerminateOnNaN(),
@@ -151,5 +151,5 @@ class VGG(object):
 #format_images("Train")
 #format_images("Test")
 #sort_data(SOURCE_DATA,TRAIN_DATA,VALIDATE_DATA)
-vgg = VGG()
-vgg.train(TRAIN_DATA ,VALIDATE_DATA,'vgg',NUMBER_EPOCHS)
+
+

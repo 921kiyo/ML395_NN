@@ -6,6 +6,7 @@ IM_WIDTH = 48
 '''
 IM_HEIGHT = 299
 IM_WIDTH = 299'''
+
 NUMBER_CLASSES = 7
 NUMBER_EPOCHS = 10
 NUMBER_CHANNELS = 1
@@ -19,4 +20,4 @@ MODEL_SAVE_FOLDER = os.path.join('MODEL_OUTPUTS','models')
 TENSORBOARD_LOGS_FOLDER = os.path.join('MODEL_OUTPUTS','logs')
 INTERMEDIATE_FILE = os.path.join('MODEL_OUTPUTS','checkpoints','intermediate.hdf5')
 TRAIN_DATA = os.path.join("datasets","Fer2013pu","public","Train")
-VALIDATE_DATA = os.path.join("datasets","Fer2013pu","public","TEST")
+VALIDATE_DATA = os.path.join("datasets","Fer2013pu","public","Test")
