@@ -253,6 +253,8 @@ class Solver(object):
             scores = self.model.loss(X[start:end])
             y_pred.append(np.argmax(scores, axis=1))
         y_pred = np.hstack(y_pred)
+
+        prec = np.mean(y_pred == y)
         acc = np.mean(y_pred == y)
 
         return acc
