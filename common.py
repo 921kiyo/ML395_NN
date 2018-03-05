@@ -3,9 +3,6 @@ import os
 #vgg_net images MUST BE DIVISIBLE BY 4!!!
 IM_HEIGHT = 48
 IM_WIDTH = 48
-'''
-IM_HEIGHT = 299
-IM_WIDTH = 299'''
 
 NUMBER_CLASSES = 7
 NUMBER_EPOCHS = 10
