@@ -1,43 +1,55 @@
 #from new_vgg import *
 from common import *
 from vgg_net import *
-
-'''
-TRAIN_DATA = os.path.join("datasets","NEW_NUMBERING_REACT","new_train")
-VALIDATE_DATA = os.path.join("datasets","NEW_NUMBERING_REACT","new_test")
-
-
-datagen = ImageDataGenerator()
-
-validate_generator = datagen.flow_from_directory(VALIDATE_DATA, target_size = (IM_HEIGHT,IM_WIDTH), class_mode = "categorical")
-'''
-vgg = VGG(cached_model = os.path.join("MODEL_OUTPUTS","checkpoints","intermediate.hdf5"))
-#print(vgg.model.evaluate_generator(validate_generator))
+import glob
+from PIL import Image
+import keras
 
 
-TRAIN_DATA = os.path.join("datasets","Fer2013pu","public","Train")
-VALIDATE_DATA = os.path.join("datasets","Fer2013pu","public","Test")
-vgg.train(TRAIN_DATA ,VALIDATE_DATA,'final_stage_old_network',25)
+def predict(X,batch_size=100, model = None):
+    N = X.shape[0]
+    X = np.expand_dims(X,axis=3)
+    vgg = VGG(cached_model=os.path.join("60_percent_Model_Outputs", "models", "vgg_netvgg.hdf5"))
+    predictions = np.argmax(vgg.model.predict(X,batch_size=100), axis=1)
+    return predictions
 
-'''
-vgg = VGG()
-vgg.train(TRAIN_DATA ,VALIDATE_DATA,'pre_trained_old',30)
+def test_fer_model(img_folder):
+    # Get image names
+    image_names = sorted(glob.glob(img_folder + "/*.jpg"))
+    n = len(image_names)
+    print(image_names)
+    # Load images and predict in batches
+    batch_size = 1000
+
+    predictions = []
+    test_data = []
+    n_batch = 0
+    for i in range(0,n):
+        # Load a batch of grayscale images
+        im = Image.open(image_names[i]) #im = misc.imread(os.path.join(path_to_images,image_names[i]), mode= 'F')
+        im = im.convert('F')
+
+        # SUBTRACT mean here
+        imex = np.expand_dims(im, axis=0)
+        #imex = np.expand_dims(im, axis=4)
+
+        test_data.append(imex)
+        print(test_data[0].shape)
+        n_batch += 1
+        if n_batch == batch_size or i == n-1:
+            # Predict on the batch and append results to overall predictions
+            con = np.concatenate(test_data, axis=0)
+            p_batch = predict(con,batch_size=con.shape[0])
+            predictions.append(p_batch)
+            test_data = []
+            n_batch = 0
+
+    # Return predictions for entire directory as np.array
+    predictions = np.concatenate(predictions)
+    return  predictions
 
 
-TRAIN_DATA = os.path.join("datasets","Fer2013pu","public","Train")
-VALIDATE_DATA = os.path.join("datasets","Fer2013pu","public","Test")
 
-
-
-model_loc = os.path.join('MODEL_OUTPUTS','models','vgg_netpre_trained_old.hdf5')
-
-
-vgg = VGG(cached_model = model_loc)
-vgg.train(TRAIN_DATA ,VALIDATE_DATA,'final_stage_old_network',25)
-'''
-
-
-
-
-#TRAIN_DATA =
-#VALIDATE_DATA = vgg = VGG_new()
+path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
+#path_to_images = "datasets/FER2013pu/public/Test"
+test_fer_model(img_folder=path_to_images)
