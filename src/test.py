@@ -26,12 +26,6 @@ def predict(X,batch_size=100, model = None):
 
     return y_pred
 
-# Paths for model and test data
-# path_to_model = 'Q5mod_epoch_20.pkl'
-path_to_model = '/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl'
-# path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
-path_to_images = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test"
-
 
 def test_fer_model(img_folder, model_path):
     # Load the model from pickle and set to testing mode
@@ -40,7 +34,7 @@ def test_fer_model(img_folder, model_path):
     model.dropout_params['train'] = False
 
     # Get image names
-    image_names = sorted(glob.glob(path_to_images + "/*.jpg"))
+    image_names = sorted(glob.glob(img_folder + "/*.jpg"))
     n = len(image_names)
 
     # Load images and predict in batches
@@ -51,7 +45,7 @@ def test_fer_model(img_folder, model_path):
     n_batch = 0
     for i in range(0,n):
         # Load a batch of grayscale images
-        im = Image.open(os.path.join(path_to_images,image_names[i])) #im = misc.imread(os.path.join(path_to_images,image_names[i]), mode= 'F')
+        im = Image.open(os.path.join(img_folder,image_names[i])) #im = misc.imread(os.path.join(img_folder,image_names[i]), mode= 'F')
         im = im.convert('F')
 
         # SUBTRACT mean here
@@ -72,7 +66,13 @@ def test_fer_model(img_folder, model_path):
     predictions = np.concatenate(predictions)
     return  predictions
 
-overall_pred = test_fer_model(path_to_images, path_to_model)
+# Paths for model and test data
+# path_to_model = 'Q5mod_epoch_20.pkl'
+path_to_model = '/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl'
+# path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
+path_to_images = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test"
+
+overall_pred = test_fer_model(img_folder, path_to_model)
 from src.get_acc import get_labels
 labs = get_labels()
 keys_in_order = sorted(list(labs.keys()))
