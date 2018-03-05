@@ -316,7 +316,7 @@ class Solver(object):
                 self.model.params = self.best_params
                 return
 
-            if self.epoch > 10 and self.val_acc_history[-10] >= self.val_acc_history[-1]:
+            if self.epoch > 30 and self.val_acc_history[-30] >= self.val_acc_history[-1]:
                 self.model.params = self.best_params
                 return
 

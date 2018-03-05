@@ -18,7 +18,7 @@ def get_image_names(directory_):
 
 
 def format_images(dir_):
-    data_folder = os.path.join('datasets','Fer2013pu','public')
+    data_folder = os.path.join('datasets','FER2013')
     labels = os.path.join(data_folder,'labels_public.txt')
     training_folder = os.path.join(data_folder,dir_)
 
@@ -35,3 +35,8 @@ def format_images(dir_):
         if len(row) > 0:
             #print(str(row.iloc[0,1]))
             os.rename(os.path.join(training_folder,image),os.path.join(training_folder,str(row.iloc[0,1]),image))
+
+
+
+
+format_images('Test')

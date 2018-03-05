@@ -48,7 +48,7 @@ def get_CIFAR10_data(num_training=49000, num_validation=1000, num_test=1000,
     """
     # Load the raw CIFAR-10 data
     #path = "/vol/bitbucket/395ML_NN_Data/"
-    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
+    path = "/home/greg/Desktop/Q5/ML395_NN"
     cifar10_dir = os.path.join(path,'datasets','cifar-10-batches-py')
     X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
 
@@ -86,7 +86,7 @@ def load_FER_2013(filename):
     """ load single batch of cifar """
     with open(filename, 'rb') as f:
         datadict = load_pickle(f)
-        print(datadict)
+        #print(datadict)
         X_train = datadict['X_train']
         X_test = datadict['X_test']
         Y_train = datadict['y_train']
@@ -103,7 +103,7 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
     """
     # Load the raw CIFAR-10 data
     #path = "/vol/bitbucket/395ML_NN_Data/"
-    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
+    path = "/home/greg/Desktop/Q5/ML395_NN"
     fer2013_dir = os.path.join(path,'datasets')#,'Fer2013pu','public')
     X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
 
@@ -126,6 +126,13 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
         X_val -= mean_image
         X_test -= mean_image
 
+
+        #ADDED - REMOVE
+        #std_image = np.std(X_train, axis=0)
+        #X_train /= std_image
+        #X_val /= std_image
+       # X_test /= std_image
+
     # Transpose so that channels come first
     X_train = X_train.transpose(0, 3, 1, 2).copy()
     X_val = X_val.transpose(0, 3, 1, 2).copy()
@@ -136,6 +143,7 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
       'X_train': X_train, 'y_train': y_train,
       'X_val': X_val, 'y_val': y_val,
       'X_test': X_test, 'y_test': y_test,
+        #'mean_image' : mean_image, 'std_img' : std_image
     }
 
 

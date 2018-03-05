@@ -39,14 +39,14 @@ class FullyConnectedNet(object):
     learned with the Solver.
     """
     def __init__(self, hidden_dims, input_dim=32*32*3, num_classes=10,
-                 dropout=0, reg=0.0, weight_scale=1e-2, dtype=np.float32,
+                 dropout=0, reg=0, weight_scale=1e-2, dtype=np.float32,
                  seed=None):
         """
         Initialise the fully-connected neural networks.
         Args:
         - hidden_dims: A list of the size of each hidden layer
         - input_dim: A list giving the size of the input
-        - num_classes: Number of classes to classify.
+        - num_classes: Number of classes to classify.1
         - dropout: A scalar between 0. and 1. determining the dropout factor.
         If dropout = 0., then dropout is not applied.
         - reg: Regularisation factor.
