@@ -5,7 +5,7 @@ Start the terminal and you can install the virtual environment as follow:
 
 ```bash
 # Go to assignment folder
-cd ML2
+cd ML395_NN
 
 # Change permissions to execute bash script
 chmod 755 install_lab_env.sh
