@@ -13,13 +13,13 @@ accuracy on the validation set.
 #                           BEGIN OF YOUR CODE                            #
 ###########################################################################
 data = get_FeR2013_data()
-model = FullyConnectedNet(hidden_dims=[128],input_dim=48*48*1, reg=1e-3, num_classes=7,dtype=np.float64)
+model = FullyConnectedNet(hidden_dims=[544,801],input_dim=48*48*1, reg=0, num_classes=7,dropout=0.1,dtype=np.float64)
 
 #for lr in [0.0001,0.0005,0.001,0.005,0.01,0.05,0.1]:
-lr = 1e-3
+lr = 0.0013182567385564034
 solver = Solver(model, data,
                 update_rule='sgd',
-                optim_config={'learning_rate': lr,}, lr_decay = 0.85,
+                optim_config={'learning_rate': lr,}, lr_decay = 1.0,
                 num_epochs=100, batch_size=70,
                 print_every=100)
 

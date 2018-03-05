@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 import json
 
 kwargs = None
-json_log2 = open("tune_lr_grid.json", mode='wt', buffering=1)
+json_log2 = None
+
 """
 TODO: Use a Solver instance to train a TwoLayerNet that achieves at least 50%
 accuracy on the validation set.
@@ -20,11 +21,13 @@ data = get_FeR2013_data()
 def get_vals(lr,hidden_dims1,hidden_dims2,lr_decay,reg):
     global json_log2
     lr = 10 ** lr
+    print(hidden_dims1)
+    print(hidden_dims2)
     model = FullyConnectedNet(hidden_dims=[int(hidden_dims1),int(hidden_dims2)], input_dim=48 * 48 * 1, reg=reg, num_classes=7, dtype=np.float64)
     solver = Solver(model, data,
                     update_rule='sgd',
                     optim_config={'learning_rate': lr,}, lr_decay = lr_decay,
-                    num_epochs=3, batch_size=70,
+                    num_epochs=100, batch_size=70,
                     print_every=1000000)
 
     solver.train()
@@ -45,6 +48,7 @@ def return_grid(value,dist):
 def minimise(old_val,**args):#lr,hidden_dims1,hidden_dims2,lr_decay,reg):
     global kwargs
     if args is not None:
+        print(args)
         for key, value in args.items():
             if isinstance(value, list):
                 dist = value[1] - value[0]
@@ -55,16 +59,19 @@ def minimise(old_val,**args):#lr,hidden_dims1,hidden_dims2,lr_decay,reg):
                 max_val = 0
                 for item in range(len(grid)):
                     print("Trying item no: " +str(item) + " and value : " + str(grid[item]))
+                    print(" Args are : " + str(args))
                     args[key] = grid[item]
+                    print("item is " + str(item) + " grid val is " + str(grid[item]))
+                    print(" Args are : " + str(args))
                     values.append(get_vals(**args))
                     if values[-1]>max_val:
                         max_val = values[-1]
                         max_item = item
 
-                if max_item == len(grid)-1:
-                    args[key] = [grid[max_item]-dist/10, grid[max_item]+dist/10]
 
-                if(old_val <= max_val-0.1):
+                args[key] = [grid[max_item]-dist/10, grid[max_item]+dist/10]
+
+                if(old_val <= max_val-0.01):
                     old_val = max_val
                     print("Best Accuracy is :" + str(max_val))
                     minimise(old_val=old_val,**args)
@@ -80,28 +87,36 @@ def kwargs_edit(**args):
     global kwargs
     kwargs['lr'] = 5
 
-lr_decay = 0.85
+lr_decay = 0.94
 reg = 0#1e-3
-lr = 1e-3
-hd1 = 100
+lr = [-6,-2.6]#-2.64
+hd1 = 100#505
 hd2 = 100
-to_sort = 'lr'
-kwargs = {'lr': [-6,-3] ,'hidden_dims1' : hd1,'hidden_dims2': hd2,'lr_decay':lr_decay,'reg':reg}
+kwargs = {'lr': lr ,'hidden_dims1' : hd1,'hidden_dims2': hd2,'lr_decay':lr_decay,'reg':reg}
+
+json_log2 = open("tune_lr_grid.json", mode='wt', buffering=1)
 minimise(old_val=0,**kwargs)
 json_log2.close()
+
+'''
 json_log2 = open("tune_lr_decay_grid.json", mode='wt', buffering=1)
 kwargs['lr_decay'] = [0,1]
 minimise(old_val=0,**kwargs)
 json_log2.close()
+
+
 json_log2 = open("tune_hiddem_dims1_grid.json", mode='wt', buffering=1)
 kwargs['hidden_dims1'] = [10,1000]
+print(kwargs)
 minimise(old_val=0,**kwargs)
 json_log2.close()
+
+
 json_log2 = open("tune_hidden_dims2_grid.json", mode='wt', buffering=1)
 kwargs['hidden_dims2'] = [10,1000]
 minimise(old_val=0,**kwargs)
 json_log2.close()
-
+'''
 kwargs_edit(**kwargs)
 print(kwargs)
 
