@@ -102,9 +102,10 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
     condensed to a single function.
     """
     # Load the raw CIFAR-10 data
-    #path = "/vol/bitbucket/395ML_NN_Data/"
-    path = "/home/greg/Desktop/Q5/ML395_NN"
-    fer2013_dir = os.path.join(path,'datasets')#,'Fer2013pu','public')
+    # path = "/vol/bitbucket/395ML_NN_Data/"
+    path = "/vol/bitbucket/"
+    # path = "/home/greg/Desktop/Q5/ML395_NN"
+    fer2013_dir = os.path.join(path,'ML_pickle')#,'Fer2013pu','public')
     X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
 
 
@@ -145,6 +146,3 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
       'X_test': X_test, 'y_test': y_test,
         #'mean_image' : mean_image, 'std_img' : std_image
     }
-
-
-

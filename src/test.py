@@ -25,8 +25,10 @@ def predict(X,batch_size=100, model = None):
     return y_pred
 
 # Paths for model and test data
-path_to_model = 'Q5mod_epoch_61.pkl'
-path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
+# path_to_model = 'Q5mod_epoch_20.pkl'
+path_to_model = '/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl'
+# path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
+path_to_images = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test"
 
 
 def test_fer_model(img_folder, model_path):
@@ -77,7 +79,7 @@ keys_in_order = sorted(list(labs.keys()))
 labs_in_order = []
 
 for j in range(len(keys_in_order)):
-    if keys_in_order[j][1] != 'e':
+    if keys_in_order[j][1] != 'r':
         labs_in_order.append(labs[keys_in_order[j]])
 
 labs_in_order = np.array(labs_in_order)
@@ -85,4 +87,12 @@ labs_in_order = np.array(labs_in_order)
 print("Accuracy is: {}".format(np.mean(labs_in_order == overall_pred)))
 
 
+from sklearn.metrics import confusion_matrix, f1_score
 
+f1_score = f1_score(labs_in_order, overall_pred, average=None)
+print("F1 Score: ")
+print(f1_score)
+
+confusion = confusion_matrix(labs_in_order, overall_pred)
+print("Confusion: ")
+print(confusion)
