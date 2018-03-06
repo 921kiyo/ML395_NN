@@ -1,6 +1,5 @@
 # Installation
 
-
 Start the terminal and you can install the virtual environment as follow:
 
 ```bash

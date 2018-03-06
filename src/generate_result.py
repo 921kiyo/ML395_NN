@@ -49,6 +49,8 @@ def test_fer_model(img_folder, model_path):
         im = im.convert('F')
 
         # SUBTRACT mean here
+
+
         imex = np.expand_dims(im, axis=0)
         test_data.append(imex)
         n_batch += 1
