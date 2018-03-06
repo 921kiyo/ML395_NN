@@ -9,7 +9,7 @@ import keras
 def predict(X,batch_size=100, model = None):
     N = X.shape[0]
     X = np.expand_dims(X,axis=3)
-    vgg = VGG(cached_model=os.path.join("60_percent_Model_Outputs", "models", "vgg_netvgg.hdf5"))
+    vgg = VGG(cached_model=os.path.join("question6", "models", "vgg_netvgg.hdf5"))
     predictions = np.argmax(vgg.model.predict(X,batch_size=100), axis=1)
     return predictions
 
@@ -48,8 +48,5 @@ def test_fer_model(img_folder):
     predictions = np.concatenate(predictions)
     return  predictions
 
-
-
-path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
-#path_to_images = "datasets/FER2013pu/public/Test"
+path_to_images = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Train"
 test_fer_model(img_folder=path_to_images)
