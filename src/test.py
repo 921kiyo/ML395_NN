@@ -113,8 +113,9 @@ def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER201
 
     # Return predictions for entire directory as np.array
     predictions = np.concatenate(predictions)
+    print("predictions ", predictions)
     return  predictions
 
-
+# TODO DElete this
 model_path = '/homes/kk3317/Desktop/ML395_NN/'
-test_deep_fer_model(model_path = model_path)
+overall_pred = test_deep_fer_model(model_path = model_path)
