@@ -27,7 +27,7 @@ class VGG(object):
         self.model.add(Conv2D(32, (3, 3), activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
         self.model.add(Dropout(0.25))
-        
+
         self.model.add(Conv2D(64, (3, 3), activation='relu'))
         self.model.add(Conv2D(64, (3, 3), activation='relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -80,7 +80,7 @@ class VGG(object):
             color_mode="grayscale",
             target_size=(IM_HEIGHT, IM_WIDTH),
             batch_size=BATCH_SIZE,
-            class_mode="categorical")  # CHANGE THIS!!!
+            class_mode="categorical")
 
         self.model.fit_generator(train_generator, validation_data=validate_generator,callbacks=[
                                                              keras.callbacks.TerminateOnNaN(),
@@ -106,22 +106,3 @@ class VGG(object):
         if not os.path.exists(MODEL_SAVE_FOLDER):
             os.makedirs(MODEL_SAVE_FOLDER)
         self.model.save(os.path.join(MODEL_SAVE_FOLDER,str(self.model_name + '.hdf5')))
-
-
-    def predict(self,input_data):
-        """
-        Given data from 1 frame, predict where the ships should be sent.
-
-        :param input_data: numpy array of shape (PLANET_MAX_NUM, PER_PLANET_FEATURES)
-        :return: 1-D numpy array of length (PLANET_MAX_NUM) describing percentage of ships
-        that should be sent to each planet
-        """
-        # CHANGED THIS!!!!
-        input_data = input_data / 255
-        predictions = self.model.predict(input_data, verbose=False)
-        return np.array(predictions[0])
-
-
-#format_images("Train")
-#format_images("Test")
-#sort_data(SOURCE_DATA,TRAIN_DATA,VALIDATE_DATA)
