@@ -81,11 +81,11 @@ def predict_deep(X,batch_size=100, model = None):
     predictions = np.argmax(vgg.model.predict(X,batch_size=100), axis=1)
     return predictions
 
-def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path=None):
+def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path='/homes/kk3317/Desktop/ML395_NN/'):
+    model_path = os.path.join(model_path,"src/question6/models/vgg_netvgg.hdf5")
     # Get image names
     image_names = sorted(glob.glob(img_folder + "/*.jpg"))
     n = len(image_names)
-    print(image_names)
     # Load images and predict in batches
     batch_size = 1000
 
@@ -102,7 +102,6 @@ def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER201
         #imex = np.expand_dims(im, axis=4)
 
         test_data.append(imex)
-        print(test_data[0].shape)
         n_batch += 1
         if n_batch == batch_size or i == n-1:
             # Predict on the batch and append results to overall predictions
@@ -117,5 +116,5 @@ def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER201
     return  predictions
 
 
-model = "/homes/kk3317/Desktop/ML395_NN/question6/models/"
-test_deep_fer_model(model_path=model)
+model_path = '/homes/kk3317/Desktop/ML395_NN/'
+test_deep_fer_model(model_path = model_path)
