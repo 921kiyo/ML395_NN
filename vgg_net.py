@@ -7,7 +7,6 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import load_model
 from common import *
 import numpy as np
-#from Load_Images import *
 
 
 class VGG(object):
