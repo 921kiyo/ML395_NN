@@ -14,6 +14,25 @@ chmod 755 install_lab_env.sh
 ./install_lab_env.sh
 ```
 
+# How to run src/test.py for Q5 and 6
+
+Here is the example of how to run `src/test.py`.
+
+```
+model_path_q5 = "PATH/TO/THIS/REPO/pkl/Q5mod_epoch_20.pkl"
+img_folder_q5 = "PATH/TO/IMAGE"
+
+# Call test_fer_model() for Q5
+test_fer_model(img_folder, model_path)
+
+
+model_path_q6 = "PATH/TO/THIS/REPO/question6/models/vgg_netvgg.hdf5"
+img_folder_q6 = "PATH/TO/IMAGE"
+
+# Call test_deep_fer_model() for Q6
+test_deep_fer_model(img_folder, model_path)
+```
+
 # Instruction
 
 395 Machine Learning: Assignment 2

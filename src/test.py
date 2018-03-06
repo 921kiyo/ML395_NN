@@ -8,7 +8,7 @@ from PIL import Image
 
 from eval.matrix import *
 
-# Make this a member function of the model?
+# Prediction for Q5
 def predict(X,batch_size=100, model = None):
     N = X.shape[0]
 
@@ -27,7 +27,7 @@ def predict(X,batch_size=100, model = None):
     return y_pred
 
 
-def test_fer_model(img_folder, model_path):
+def test_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path="/homes/kk3317/Desktop/ML395_NN/pkl/Q5mod_epoch_20.pkl"):
     # Load the model from pickle and set to testing mode
     model_data = pickle.load(open(model_path,'rb'))
     model = model_data['model']
@@ -64,55 +64,58 @@ def test_fer_model(img_folder, model_path):
     predictions = np.concatenate(predictions)
     return  predictions
 
-# Paths for model and test data
-# path_to_model = 'Q5mod_epoch_20.pkl'
-path_to_model = '/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl'
-# path_to_images = "/home/greg/Desktop/Q5/ML395_NN/datasets/FER2013/Train"
-path_to_images = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test"
-
-overall_pred = test_fer_model(img_folder, path_to_model)
-from src.get_acc import get_labels
-labs = get_labels()
-keys_in_order = sorted(list(labs.keys()))
-labs_in_order = []
-
-for j in range(len(keys_in_order)):
-    if keys_in_order[j][1] != 'r':
-        labs_in_order.append(labs[keys_in_order[j]])
-
-labs_in_order = np.array(labs_in_order)
-
-print("Accuracy is: {}".format(np.mean(labs_in_order == overall_pred)))
+#from new_vgg import *
+from common import *
+from vgg_net import *
+import glob
+from PIL import Image
+import keras
 
 
-from sklearn.metrics import confusion_matrix, f1_score
+# Prediction for Q5
+def predict_deep(X,batch_size=100, model = None):
+    N = X.shape[0]
+    X = np.expand_dims(X,axis=3)
+    X = X/255
+    vgg = VGG(cached_model=model)
+    predictions = np.argmax(vgg.model.predict(X,batch_size=100), axis=1)
+    return predictions
 
-f1_score = f1_score(labs_in_order, overall_pred, average=None)
-print("F1 Score: ")
-print(f1_score)
+def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Train", model_path=None):
+    # Get image names
+    image_names = sorted(glob.glob(img_folder + "/*.jpg"))
+    n = len(image_names)
+    print(image_names)
+    # Load images and predict in batches
+    batch_size = 1000
 
-recall = recall_score(labs_in_order, overall_pred, average=None)
-print("Recall: ")
-print(recall)
+    predictions = []
+    test_data = []
+    n_batch = 0
+    for i in range(0,n):
+        # Load a batch of grayscale images
+        im = Image.open(image_names[i]) #im = misc.imread(os.path.join(path_to_images,image_names[i]), mode= 'F')
+        im = im.convert('F')
 
-precision = precision_score(labs_in_order, overall_pred, average=None)
-print("Precision: ")
-print(precision)
+        # SUBTRACT mean here
+        imex = np.expand_dims(im, axis=0)
+        #imex = np.expand_dims(im, axis=4)
 
-confusion = confusion_matrix(labs_in_order, overall_pred)
-print("Confusion: ")
-print(confusion)
+        test_data.append(imex)
+        print(test_data[0].shape)
+        n_batch += 1
+        if n_batch == batch_size or i == n-1:
+            # Predict on the batch and append results to overall predictions
+            con = np.concatenate(test_data, axis=0)
+            p_batch = predict_deep(con,batch_size=con.shape[0], model=model_path)
+            predictions.append(p_batch)
+            test_data = []
+            n_batch = 0
 
-np.set_printoptions(precision=2)
-# Plot non-normalized confusion matrix
-plt.figure()
-class_names = labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
-plot_confusion_matrix(confusion, classes=class_names,
-                      title='Confusion matrix, without normalization')
+    # Return predictions for entire directory as np.array
+    predictions = np.concatenate(predictions)
+    return  predictions
 
-# Plot normalized confusion matrix
-plt.figure()
-plot_confusion_matrix(confusion, classes=class_names, normalize=True,
-                      title='Normalized confusion matrix')
 
-plt.show()
+model_path = "/homes/kk3317/Desktop/ML2/question6/models"
+test_deep_fer_model(model=model_path)

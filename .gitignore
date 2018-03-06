@@ -1,6 +1,6 @@
 /env/
 
-*.pkl
+/pkl/*.pkl
 
 /eval/__pycache__/
 /__pycache__/

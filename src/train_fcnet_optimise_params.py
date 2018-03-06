@@ -13,11 +13,11 @@ accuracy on the validation set.
 #                           BEGIN OF YOUR CODE                            #
 ###########################################################################
 data = get_FeR2013_data()
-model = FullyConnectedNet(hidden_dims=[544,801],input_dim=48*48*1, reg=0, num_classes=7,dropout=0.1,dtype=np.float64)
+model = FullyConnectedNet(hidden_dims=[544,801],input_dim=48*48*1, num_classes=7,dtype=np.float64)#,dropout=0.0reg=0,
 model.mean_image = data['mean_image']
 lr = 0.0013182567385564034
 solver = Solver(model, data,
-                update_rule='sgd',
+                update_rule='sgd_momentum',
                 optim_config={'learning_rate': lr,}, lr_decay = 1.0,
                 num_epochs=100, batch_size=70,
                 print_every=100,checkpoint_name="intermediate")
