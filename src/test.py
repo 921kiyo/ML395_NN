@@ -81,7 +81,7 @@ def predict_deep(X,batch_size=100, model = None):
     predictions = np.argmax(vgg.model.predict(X,batch_size=100), axis=1)
     return predictions
 
-def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Train", model_path=None):
+def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path=None):
     # Get image names
     image_names = sorted(glob.glob(img_folder + "/*.jpg"))
     n = len(image_names)
@@ -117,5 +117,5 @@ def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER201
     return  predictions
 
 
-model_path = "/homes/kk3317/Desktop/ML2/question6/models"
-test_deep_fer_model(model=model_path)
+model = "/homes/kk3317/Desktop/ML395_NN/question6/models/"
+test_deep_fer_model(model_path=model)
