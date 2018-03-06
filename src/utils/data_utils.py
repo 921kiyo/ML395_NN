@@ -135,5 +135,5 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
     return {
       'X_train': X_train, 'y_train': y_train,
       'X_val': X_val, 'y_val': y_val,
-      'X_test': X_test, 'y_test': y_test,
+      'X_test': X_test, 'y_test': y_test,'mean_image':mean_image
     }
