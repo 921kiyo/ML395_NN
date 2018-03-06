@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 
 def get_labels():
     path = "/vol/bitbucket/395ML_NN_Data"
-    # path = "/home/greg/Desktop/Q5/ML395_NN"
     path_to_labels = os.path.join(path, 'datasets','FER2013','labels_public.txt')
 
     labs = open(path_to_labels).readlines()

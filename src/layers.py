@@ -82,9 +82,7 @@ def relu_forward(X):
     ###########################################################################
     #                           BEGIN OF YOUR CODE                            #
     ###########################################################################
-    # print("X: ", X.shape)
     out = X.copy()  # Must use copy in numpy to avoid pass by reference.
-    #out[out < 0] = 0
     # ReLU activation function
     relu = lambda z: np.maximum(0, z)
     out = relu(out)

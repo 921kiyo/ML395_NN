@@ -24,9 +24,7 @@ solver = Solver(model, data,
                 print_every=100)
 
 
-#acc3 = solver.check_accuracy(data['X_test'], data['y_test'])
 solver.train()
-#solver._save_checkpoint() #save
 
 acc1 = solver.check_accuracy(data['X_val'], data['y_val'])
 acc2 = solver.check_accuracy(data['X_train'], data['y_train'])
