@@ -102,8 +102,9 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
     condensed to a single function.
     """
     # Load the raw CIFAR-10 data
-    path = "/vol/bitbucket/395ML_NN_Data/"
-    fer2013_dir = os.path.join(path,'datasets')#,'Fer2013pu','public')
+    #path = "/vol/bitbucket/395ML_NN_Data/"
+    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
+    fer2013_dir = os.path.join(path,'datasets')
     X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
 
 
