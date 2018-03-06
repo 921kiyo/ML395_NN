@@ -8,7 +8,7 @@ from PIL import Image
 
 from eval.matrix import *
 
-# Make this a member function of the model?
+# Prediction for Q5
 def predict(X,batch_size=100, model = None):
     N = X.shape[0]
 
@@ -27,7 +27,7 @@ def predict(X,batch_size=100, model = None):
     return y_pred
 
 
-def test_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path="/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl"):
+def test_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path="/homes/kk3317/Desktop/ML395_NN/pkl/Q5mod_epoch_20.pkl"):
     # Load the model from pickle and set to testing mode
     model_data = pickle.load(open(model_path,'rb'))
     model = model_data['model']
@@ -64,7 +64,6 @@ def test_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Tes
     predictions = np.concatenate(predictions)
     return  predictions
 
-
 #from new_vgg import *
 from common import *
 from vgg_net import *
@@ -72,14 +71,17 @@ import glob
 from PIL import Image
 import keras
 
+
+# Prediction for Q5
 def predict_deep(X,batch_size=100, model = None):
     N = X.shape[0]
     X = np.expand_dims(X,axis=3)
+    X = X/255
     vgg = VGG(cached_model=model)
     predictions = np.argmax(vgg.model.predict(X,batch_size=100), axis=1)
     return predictions
 
-def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Train", model=None):
+def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Train", model_path=None):
     # Get image names
     image_names = sorted(glob.glob(img_folder + "/*.jpg"))
     n = len(image_names)
@@ -105,7 +107,7 @@ def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER201
         if n_batch == batch_size or i == n-1:
             # Predict on the batch and append results to overall predictions
             con = np.concatenate(test_data, axis=0)
-            p_batch = predict_deep(con,batch_size=con.shape[0], model)
+            p_batch = predict_deep(con,batch_size=con.shape[0], model=model_path)
             predictions.append(p_batch)
             test_data = []
             n_batch = 0
@@ -114,4 +116,6 @@ def test_deep_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER201
     predictions = np.concatenate(predictions)
     return  predictions
 
-# test_deep_fer_model()
+
+model_path = "/homes/kk3317/Desktop/ML2/question6/models"
+test_deep_fer_model(model=model_path)
