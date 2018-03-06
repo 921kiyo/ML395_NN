@@ -306,5 +306,13 @@ class Solver(object):
                     for k, v in self.model.params.items():
                         self.best_params[k] = v.copy()
 
+            if np.isnan(self.loss_history[-1]) or self.loss_history[-1] > 1e+5:
+                self.model.params = self.best_params
+                return
+
+            if self.epoch > 10 and self.val_acc_history[-10] >= self.val_acc_history[-1]:
+                self.model.params = self.best_params
+                return
+
         # At the end of training swap the best params into the model
         self.model.params = self.best_params
