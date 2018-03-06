@@ -37,7 +37,7 @@ def get_vals(lr,hidden_dims1,hidden_dims2,lr_decay,reg):
     acc = max(solver.train_acc_history)
     loss = min(solver.loss_history)
     json_log2.write(json.dumps({'Learning Rate': lr,
-                               'accuracy': acc, 'val_acc': val_acc ,'loss': loss,
+                               'accuracy': acc, 'val_acc': val_acc ,'loss': loss,"lr_decay":lr_decay,
                                'layer_1': hidden_dims1,'layer_2': hidden_dims2}) + '\n')
     return solver.best_val_acc
 
@@ -92,19 +92,19 @@ hd1 = 100
 hd2 = 100
 
 kwargs = {'lr': lr ,'hidden_dims1' : hd1,'hidden_dims2': hd2,'lr_decay':lr_decay,'reg':reg}
-
+'''
 #OPTIMISE THE LEARNING RATE BETWEEN 10**-6 and 10**-2.1
 json_log2 = open("tune_lr_grid.json", mode='wt', buffering=1)
 lr = [-6,-2.1]
 minimise(old_val=0,**kwargs)
 json_log2.close()
-
+'''
 #OPTIMISE THE LEARNING DECAY RATE BETWEEN 0 and 1
 json_log2 = open("tune_lr_decay_grid.json", mode='wt', buffering=1)
 kwargs['lr_decay'] = [0,1]
 minimise(old_val=0,**kwargs)
 json_log2.close()
-
+'''
 #OPTIMISE HIDDEN LAYER 1 DIMENSIONS BETWEEN 100 and 1000
 json_log2 = open("tune_hiddem_dims1_grid.json", mode='wt', buffering=1)
 kwargs['hidden_dims1'] = [10,1000]
@@ -117,5 +117,5 @@ json_log2 = open("tune_hidden_dims2_grid.json", mode='wt', buffering=1)
 kwargs['hidden_dims2'] = [10,1000]
 minimise(old_val=0,**kwargs)
 json_log2.close()
-
+'''
 print(kwargs)
