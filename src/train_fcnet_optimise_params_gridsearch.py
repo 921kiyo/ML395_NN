@@ -107,10 +107,11 @@ for i in range(3):
     #OPTIMISE THE LEARNING RATE BETWEEN 10**-6 and 10**-2.1
     json_log2 = open("tune_lr_grid.json", mode='wt', buffering=1)
     json_log = open("tune_lr_grid_.json", mode='wt', buffering=1)
-    lr = [-6,-2.1]
+    kwargs['lr'] = [-6,-2.1]
     minimise(old_val=0,**kwargs)
     json_log2.close()
     json_log.close()
+
 
     #OPTIMISE THE LEARNING DECAY RATE BETWEEN 0 and 1
     json_log2 = open("tune_lr_decay_grid.json", mode='wt', buffering=1)

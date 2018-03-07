@@ -15,27 +15,16 @@ accuracy on the validation set.
 data = get_FeR2013_data()
 model = FullyConnectedNet(hidden_dims=[544,801],input_dim=48*48*1, num_classes=7,dtype=np.float64)#,dropout=0.0reg=0,
 model.mean_image = data['mean_image']
-lr = 0.0013182567385564034
+lr = 0.013614446824659357
 solver = Solver(model, data,
                 update_rule='sgd_momentum',
-                optim_config={'learning_rate': lr,}, lr_decay = 1.0,
+                optim_config={'learning_rate': lr,}, lr_decay = 0.8,
                 num_epochs=100, batch_size=70,
                 print_every=100,checkpoint_name="intermediate")
 
 solver.train()
 acc1 = solver.check_accuracy(data['X_val'], data['y_val'])
 acc2 = solver.check_accuracy(data['X_train'], data['y_train'])
-
-
-
-
-
-
-
-
-
-
-
 
 
 
