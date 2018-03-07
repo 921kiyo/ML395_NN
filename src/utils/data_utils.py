@@ -48,8 +48,8 @@ def get_CIFAR10_data(num_training=49000, num_validation=1000, num_test=1000,
     condensed to a single function.
     """
     # Load the raw CIFAR-10 data
-    #path = "/vol/bitbucket/395ML_NN_Data/"
-    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
+    path = "/vol/bitbucket/395ML_NN_Data/"
+    #path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
     cifar10_dir = os.path.join(path,'datasets','cifar-10-batches-py')
     X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
 
@@ -82,15 +82,7 @@ def get_CIFAR10_data(num_training=49000, num_validation=1000, num_test=1000,
       'X_val': X_val, 'y_val': y_val,
       'X_test': X_test, 'y_test': y_test}
 
-def load_FER_2013(filename):
-    """ load single batch of cifar """
-    with open(filename, 'rb') as f:
-        datadict = load_pickle(f)
-        X_train = datadict['X_train']
-        X_test = datadict['X_test']
-        Y_train = datadict['y_train']
-        Y_test = datadict['y_test']
-        return X_train, Y_train, X_test, Y_test
+
 
 
 # JPEG version of image loader
@@ -173,11 +165,12 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1,
     it for classifiers. The Pickle version
     """
     # Load pickle
-    #path = "/vol/bitbucket/395ML_NN_Data/"
+    path = "/vol/bitbucket/395ML_NN_Data/"
     #path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
-    path = "/home/greg/Desktop/Q5_Final/ML395_NN"
+    #path = "/home/greg/Desktop/Q5_Final/ML395_NN"
     fer2013_dir = os.path.join(path,'datasets')
     X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
+
 
     # Subsample the data
     mask = list(range(num_training, num_training + num_validation))
@@ -208,6 +201,18 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1,
         'X_train': X_train, 'y_train': y_train,
         'X_val': X_val, 'y_val': y_val,
         'X_test': X_test, 'y_test': y_test,'mean_image':mean_image}
+
+
+def load_FER_2013(filename):
+    """ load single batch of cifar """
+    with open(filename, 'rb') as f:
+        datadict = load_pickle(f)
+        X_train = datadict['X_train']
+        X_test = datadict['X_test']
+        Y_train = datadict['y_train']
+        Y_test = datadict['y_test']
+        return X_train, Y_train, X_test, Y_test
+
 
 # Helper function to create a dictionary of labels
 def labels_dictionary(fer_folder):
