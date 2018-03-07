@@ -47,8 +47,8 @@ def get_CIFAR10_data(num_training=49000, num_validation=1000, num_test=1000,
     condensed to a single function.
     """
     # Load the raw CIFAR-10 data
-    #path = "/vol/bitbucket/395ML_NN_Data/"
-    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
+    path = "/vol/bitbucket/395ML_NN_Data/"
+    #path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
     cifar10_dir = os.path.join(path,'datasets','cifar-10-batches-py')
     X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
 
@@ -102,11 +102,10 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1000,
     condensed to a single function.
     """
     # Load the raw CIFAR-10 data
-    #path = "/vol/bitbucket/395ML_NN_Data/"
-    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
+    path = "/vol/bitbucket/ML_pickle"
+    #path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
     fer2013_dir = os.path.join(path,'datasets')
-    X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
-
+    X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(path,"FER2013_data.pickle"))
 
     # Subsample the data
     mask = list(range(num_training, num_training + num_validation))
