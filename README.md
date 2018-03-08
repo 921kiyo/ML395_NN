@@ -33,6 +33,10 @@ img_folder_q6 = "PATH/TO/IMAGE"
 test_deep_fer_model(img_folder, model_path)
 ```
 
+`train_fcnet_optimise_params.py` is used to train the optimised model for question 5.
+
+`train_fcnet_optimise_params_gridsearch` and `train_fcnet_optimise_params_gridsearch_2dims` are used only to search for parameters and were not used to train the final model.
+
 # Instruction
 
 395 Machine Learning: Assignment 2
