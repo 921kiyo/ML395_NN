@@ -9,6 +9,7 @@ This file contains the implementations of the prediction functions for Q5 and Q6
 import pickle
 import os
 import glob
+import numpy as np
 from PIL import Image
 
 def test_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path="/homes/kk3317/Desktop/ML395_NN/pkl/Q5mod_epoch_20.pkl"):

@@ -11,13 +11,12 @@ import os
 question = 6
 
 # Path to FER data
-path_to_fer = "/home/greg/Desktop/Q5_Final/ML395_NN/datasets/FER2013"
+path_to_fer = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013"
 
 # Path to feedforward
-ff = '/home/greg/Desktop/Q5_Final/ML395_NN/src/intermediate_epoch_35.pkl' #'/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl' #'Q5mod_epoch_20.pkl'
+ff = '/homes/kk3317/Desktop/ML395_NN/final_model.pkl'
 # Path to CNN
-cnn = '/home/greg/Desktop/Q5_Final/ML395_NN/src/question6/models/vgg_netvgg.hdf5' #'/homes/kk3317/Desktop/ML2/Q5mod_epoch_20.pkl' #'Q5mod_epoch_20.pkl'
-
+cnn = '/homes/kk3317/Desktop/ML395_NN/src/question6/models/vgg_netvgg.hdf5'
 
 # Make predictions
 overall_pred = None
