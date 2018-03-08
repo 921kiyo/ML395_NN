@@ -1,3 +1,7 @@
+# Report
+
+The report is in the REPORT directory.
+
 # Installation
 
 Start the terminal and you can install the virtual environment as follow:
@@ -19,14 +23,14 @@ chmod 755 install_lab_env.sh
 Here is the example of how to run `src/test.py`.
 
 ```
-model_path_q5 = "PATH/TO/THIS/REPO/pkl/Q5mod_epoch_20.pkl"
+model_path_q5 = "PATH/TO/THIS/REPO/pkl/final_model.pkl"
 img_folder_q5 = "PATH/TO/IMAGE"
 
 # Call test_fer_model() for Q5
 test_fer_model(img_folder, model_path)
 
 
-model_path_q6 = "PATH/TO/THIS/REPO/question6/models/vgg_netvgg.hdf5"
+model_path_q6 = "PATH/TO/THIS/REPO/src/question6/models/vgg_netvgg.hdf5"
 img_folder_q6 = "PATH/TO/IMAGE"
 
 # Call test_deep_fer_model() for Q6

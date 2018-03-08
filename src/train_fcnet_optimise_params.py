@@ -18,6 +18,7 @@ data = load_FER_2013_jpg(path_to_jpg_data)
 
 # OR use pickle data from bitbucket (faster). The path is specified within the function.
 #data = get_FeR2013_data()
+
 model = FullyConnectedNet(hidden_dims=[544,801],input_dim=48*48*1, num_classes=7,dtype=np.float64)#,dropout=0.0reg=0,
 model.mean_image = data['mean_image']
 lr = 0.013614446824659357

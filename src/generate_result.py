@@ -8,15 +8,15 @@ from sklearn.metrics import confusion_matrix, f1_score
 import os
 
 # Question to print results for:
-question = 6
+question = 5
 
 # Path to FER data
 path_to_fer = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013"
 
 # Path to feedforward
-ff = '/homes/kk3317/Desktop/ML395_NN/final_model.pkl'
+ff = '/homes/gc611/final_checks/ML395_NN/final_model.pkl'
 # Path to CNN
-cnn = '/homes/kk3317/Desktop/ML395_NN/src/question6/models/vgg_netvgg.hdf5'
+cnn = '/homes/gc611/final_checks/ML395_NN/src/question6/models/vgg_netvgg.hdf5'
 
 # Make predictions
 overall_pred = None
