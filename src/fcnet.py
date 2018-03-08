@@ -70,6 +70,8 @@ class FullyConnectedNet(object):
         #######################################################################
         # Set first hidden layer from the input dimensions and the first hidden layer dimensions
         self.params["W1"], self.params["b1"] = random_init(input_dim, n_out= hidden_dims[0], dtype=dtype, weight_scale=weight_scale)
+
+        # # Store the mean image of the training data for image preprocessing at test time
         self.mean_image = None
         # # Set remaining hidden layers using input is previous hidden layers output and output is size
         for item in range(1, len(hidden_dims)):

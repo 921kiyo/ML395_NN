@@ -33,7 +33,6 @@ def softmax(logits, y):
     # Calculate probabilities
     probs = P / np.sum(P, axis=1, keepdims=True)
 
-
     K = logits.shape[0]
     # # Backward pass: compute gradients
     dlogits = np.array(probs, copy = True)
