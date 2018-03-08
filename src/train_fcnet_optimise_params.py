@@ -2,7 +2,7 @@ import numpy as np
 
 from src.fcnet import FullyConnectedNet
 from src.utils.solver import Solver
-from src.utils.data_utils import get_FeR2013_data
+from src.utils.data_utils import load_FER_2013_jpg, get_FeR2013_data
 import json
 import pickle
 """
@@ -12,6 +12,10 @@ accuracy on the validation set.
 ###########################################################################
 #                           BEGIN OF YOUR CODE                            #
 ###########################################################################
+#path_to_jpg_data = "/vol/bitbucket/395ML_NN_Data/datasets/FER2013"
+#data = load_FER_2013_jpg(path_to_jpg_data)
+
+# OR use pickle data from bitbucket (faster). The path is specified within the function.
 data = get_FeR2013_data()
 model = FullyConnectedNet(hidden_dims=[544,801],input_dim=48*48*1, num_classes=7,dtype=np.float64)#,dropout=0.0reg=0,
 model.mean_image = data['mean_image']

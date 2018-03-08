@@ -164,21 +164,9 @@ def get_FeR2013_data(num_training=27709, num_validation=1000, num_test=1,
     Load the FER2013 dataset from a Pickle on disk and perform preprocessing to prepare
     it for classifiers. The Pickle version
     """
-<<<<<<< HEAD
-    # Load the raw CIFAR-10 data
-    #path = "/vol/bitbucket/ML_pickle"
-    path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
-    fer2013_dir = os.path.join(path,'datasets')
-    X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
-=======
     # Load pickle
-    path = "/vol/bitbucket/395ML_NN_Data/"
-    #path = "C:/Users/Peter/Documents/Machine_Learning/ML395_NN"
-    #path = "/home/greg/Desktop/Q5_Final/ML395_NN"
-    fer2013_dir = os.path.join(path,'datasets')
-    X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(fer2013_dir,"FER2013_data.pickle"))
-
->>>>>>> 5b7b4df594f0a86152c47da4edc8f6eeae47c6b6
+    path = "/vol/bitbucket/ML_pickle/"
+    X_train, y_train, X_test, y_test = load_FER_2013(os.path.join(path,"FER2013_data.pickle"))
 
     # Subsample the data
     mask = list(range(num_training, num_training + num_validation))

@@ -33,7 +33,7 @@ img_folder_q6 = "PATH/TO/IMAGE"
 test_deep_fer_model(img_folder, model_path)
 ```
 
-`train_fcnet_optimise_params.py` is used to train the optimised model for question 5.
+`train_fcnet_optimise_params.py` is used to train the optimised model for question 5. The model can be trained directly from the JPEG data on bitbucket, however this is slow to load. Also provided is a function to load the data from a pickle object, which loads significantly faster.
 
 `train_fcnet_optimise_params_gridsearch` and `train_fcnet_optimise_params_gridsearch_2dims` are used only to search for parameters and were not used to train the final model.
 

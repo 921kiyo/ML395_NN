@@ -1,5 +1,6 @@
+
 import numpy as np
-from bayes_opt import BayesianOptimization
+#from bayes_opt import BayesianOptimization
 from src.fcnet import FullyConnectedNet
 from src.utils.solver import Solver
 from src.utils.data_utils import get_FeR2013_data
@@ -7,6 +8,7 @@ import matplotlib.pyplot as plt
 import json
 
 kwargs = None
+json_log = None
 json_log2 = None
 
 """
@@ -19,12 +21,12 @@ accuracy on the validation set.
 data = get_FeR2013_data()
 
 #CREATE A MODEL WITH THE HYPERPARAMETERS AND RETURN THE BEST_VAL_ACC
-def get_vals(lr,hidden_dims1,hidden_dims2,lr_decay,reg):
-    global json_log2
+def get_vals(lr,hidden_dims1,hidden_dims2,lr_decay,reg,drop):
+    global json_log2,json_log
     lr = 10 ** lr
-    model = FullyConnectedNet(hidden_dims=[int(hidden_dims1),int(hidden_dims2)], input_dim=48 * 48 * 1, reg=reg, num_classes=7, dtype=np.float64)
+    model = FullyConnectedNet(hidden_dims=[int(hidden_dims1),int(hidden_dims2)], input_dim=48 * 48 * 1, reg=reg, num_classes=7, dtype=np.float64,dropout=drop)
     solver = Solver(model, data,
-                    update_rule='sgd',
+                    update_rule='sgd_momentum',
                     optim_config={'learning_rate': lr,}, lr_decay = lr_decay,
                     num_epochs=100, batch_size=70,
                     print_every=1000000)
@@ -37,8 +39,17 @@ def get_vals(lr,hidden_dims1,hidden_dims2,lr_decay,reg):
     acc = max(solver.train_acc_history)
     loss = min(solver.loss_history)
     json_log2.write(json.dumps({'Learning Rate': lr,
-                               'accuracy': acc, 'val_acc': val_acc ,'loss': loss,"lr_decay":lr_decay,
-                               'layer_1': hidden_dims1,'layer_2': hidden_dims2}) + '\n')
+                               'accuracy': acc, 'val_acc': val_acc ,
+                                'loss': loss,"lr_decay":lr_decay,
+                                'dropout':drop,'reg':reg,
+                                'layer_1': hidden_dims1,'layer_2': hidden_dims2}) + ',\n')
+
+    json_log.write(json.dumps({'Learning Rate': lr,
+                               'accuracy': solver.train_acc_history,
+                                'val_acc': solver.val_acc_history,
+                                'loss': solver.loss_history,"lr_decay":lr_decay,
+                                'dropout':drop,'reg':reg,
+                               'layer_1': hidden_dims1,'layer_2': hidden_dims2}) + ',\n')
     return solver.best_val_acc
 
 #RETURNS A GRID BETWEEN TWO VALUES
@@ -88,7 +99,6 @@ def minimise(old_val,**args):#lr,hidden_dims1,hidden_dims2,lr_decay,reg):
 lr_decay = 0.94
 reg = 0
 lr = -3
-<<<<<<< HEAD
 hd1 = 544
 hd2 = 801
 drop =0
@@ -149,36 +159,4 @@ for i in range(3):
 
 
 
-=======
-hd1 = 100
-hd2 = 100
-
-kwargs = {'lr': lr ,'hidden_dims1' : hd1,'hidden_dims2': hd2,'lr_decay':lr_decay,'reg':reg}
-'''
-#OPTIMISE THE LEARNING RATE BETWEEN 10**-6 and 10**-2.1
-json_log2 = open("tune_lr_grid.json", mode='wt', buffering=1)
-lr = [-6,-2.1]
-minimise(old_val=0,**kwargs)
-json_log2.close()
-'''
-#OPTIMISE THE LEARNING DECAY RATE BETWEEN 0 and 1
-json_log2 = open("tune_lr_decay_grid.json", mode='wt', buffering=1)
-kwargs['lr_decay'] = [0,1]
-minimise(old_val=0,**kwargs)
-json_log2.close()
-'''
-#OPTIMISE HIDDEN LAYER 1 DIMENSIONS BETWEEN 100 and 1000
-json_log2 = open("tune_hiddem_dims1_grid.json", mode='wt', buffering=1)
-kwargs['hidden_dims1'] = [10,1000]
-print(kwargs)
-minimise(old_val=0,**kwargs)
-json_log2.close()
-
-#OPTIMISE HIDDEN LAYER 2 DIMENSIONS BETWEEN 100 and 1000
-json_log2 = open("tune_hidden_dims2_grid.json", mode='wt', buffering=1)
-kwargs['hidden_dims2'] = [10,1000]
-minimise(old_val=0,**kwargs)
-json_log2.close()
-'''
->>>>>>> 5b7b4df594f0a86152c47da4edc8f6eeae47c6b6
 print(kwargs)

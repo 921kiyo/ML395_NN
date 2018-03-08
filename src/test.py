@@ -10,7 +10,6 @@ import pickle
 import os
 import glob
 from PIL import Image
-from eval.matrix import *
 
 def test_fer_model(img_folder="/vol/bitbucket/395ML_NN_Data/datasets/FER2013/Test", model_path="/homes/kk3317/Desktop/ML395_NN/pkl/Q5mod_epoch_20.pkl"):
     # Load the model from pickle and set to testing mode
